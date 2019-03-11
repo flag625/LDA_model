@@ -108,7 +108,7 @@ if __name__ == '__main__':
 
     seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"
 
-    find_grammer = r"NOVELTY - (.*)USE - (.*?)"
+    find_grammer = r"NOVELTY - (.*)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s\-\s(.*)"
 
     text_1 = u"   NOVELTY - The method involves sending a maximum distributable bandwidth by a node to acquire data. " \
            u"Use status of a network resource is confirmed based on a comparison result with a threshold value. " \
@@ -139,7 +139,7 @@ if __name__ == '__main__':
     # seg_test_1 = Segement(text_1).segement(seg_grammer_1)
     # seg_test_2 = Segement(text_2).segement(seg_grammer_1)
 
-    find_test = Segement(text_2).findall(find_grammer)
+    find_test = Segement(text_1).findall(find_grammer)
     # print(seg_test_1)
     # print(seg_test_2)
     print(find_test.group(1))
