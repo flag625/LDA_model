@@ -1,2 +1,6 @@
 2019-03-11 14:00:09,174 - Common.py[line:34] - INFO: 失败原因：
 2019-03-11 14:00:09,190 - Common.py[line:35] - INFO: [Errno 2] No such file or directory: 'E:/python/LDA_model/Data/test.xlx'
+2019-03-11 19:05:28,349 - Common.py[line:78] - INFO: 失败原因：
+2019-03-11 19:05:28,389 - Common.py[line:79] - INFO: 'NoneType' object has no attribute 'span'
+2019-03-11 19:06:22,856 - Common.py[line:77] - INFO: 失败原因：
+2019-03-11 19:06:22,857 - Common.py[line:78] - INFO: 'NoneType' object has no attribute 'span'

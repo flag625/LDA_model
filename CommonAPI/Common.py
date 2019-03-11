@@ -45,6 +45,7 @@ class Segement(object):
         :param text: 被分段的文本
         '''
         self.text = text
+        self.search_pattern = r"USE - |ADVANTAGE - |DETAILED DESCRIPTION - |DESCRIPTION OF DRAWING(S) -"
 
     def segement(self, regEx):
         '''
@@ -62,20 +63,22 @@ class Segement(object):
 
         return listOfTokens
 
-    def findall(self, search_regEx):
+    def findall(self, find_regEx):
         '''
-        摘取目标段落
-        :return:
+        摘要是规范时，摘取目标段落。
+        :return: str
         '''
         try:
-            self.regEx = re.compile(search_regEx)
+            self.regEx = re.compile(find_regEx)
+            if not re.search(self.search_pattern, self.text):
+                self.regEx = re.compile(r"NOVELTY - (.*)")
             listOfTokens = self.regEx.search(self.text)
         except Exception as e:
             logger.info(u"失败原因：")
             logger.info(e)
             raise e
 
-        return listOfTokens
+        return listOfTokens.group(1)
 
 class PosTag(object):
     def __init__(self, doc):
@@ -108,7 +111,8 @@ if __name__ == '__main__':
 
     seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"
 
-    find_grammer = r"NOVELTY - (.*)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s\-\s(.*)"
+    # 技术词的分段语法，有一条记录有“Advantages are: ”，手工处理
+    find_nov_grammer = r"NOVELTY - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s\-\s(.*)"
 
     text_1 = u"   NOVELTY - The method involves sending a maximum distributable bandwidth by a node to acquire data. " \
            u"Use status of a network resource is confirmed based on a comparison result with a threshold value. " \
@@ -136,14 +140,20 @@ if __name__ == '__main__':
              "avoiding rehandling development procedure for testing set. " \
              "The invention possesses high generality, reusability and extensibility. "
 
+    text_3 = "   NOVELTY - The disclosed forming method for broadband waveform comprises: " \
+             "determining the sub-band signal opposite to the microphone signal, " \
+             "as well as the signal frequency-domain correlation matrix; " \
+             "according to 3D space transmission vector of signal source and former matrix, determining the weight vector for every sub-band signal; " \
+             "then deciding the output signal. " \
+             "This invention combines frequency and spacedomain for speech process, and improves SNR for wide application. "
+
     # seg_test_1 = Segement(text_1).segement(seg_grammer_1)
     # seg_test_2 = Segement(text_2).segement(seg_grammer_1)
 
-    find_test = Segement(text_1).findall(find_grammer)
+    find_test = Segement(text_3).findall(find_nov_grammer)
     # print(seg_test_1)
     # print(seg_test_2)
-    print(find_test.group(1))
-    print(find_test.group(2))
+    print(find_test)
 
     # doc = u" Therefore, the invention considers the chain circuit attenuation and the effects of interference and descending load of region. " \
     #       u"Compared with traditional method based on chain circuit rate attenuation, " \
