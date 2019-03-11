@@ -103,7 +103,7 @@ if __name__ == '__main__':
     # print(test_pd)
 
     seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"
-    find_grammer = r"(NOVELTY - )[.\n]$(\.\b(\b+))"
+    find_grammer = r"^(NOVELTY - )."
     text_1 = u"   NOVELTY - The method involves sending a maximum distributable bandwidth by a node to acquire data. " \
            u"Use status of a network resource is confirmed based on a comparison result with a threshold value. " \
            u"The bandwidth to send data is confirmed based on the status. " \
@@ -130,10 +130,13 @@ if __name__ == '__main__':
              "avoiding rehandling development procedure for testing set. " \
              "The invention possesses high generality, reusability and extensibility. "
 
-    seg_test_1 = Segement(seg_grammer_1, text_1).segement()
-    seg_test_2 = Segement(seg_grammer_1, text_2).segement()
-    print(seg_test_1)
-    print(seg_test_2)
+    # seg_test_1 = Segement(seg_grammer_1, text_1).segement()
+    # seg_test_2 = Segement(seg_grammer_1, text_2).segement()
+
+    find_test = Segement(find_grammer, text_1).findall()
+    # print(seg_test_1)
+    # print(seg_test_2)
+    print(find_test)
 
     # doc = u" Therefore, the invention considers the chain circuit attenuation and the effects of interference and descending load of region. " \
     #       u"Compared with traditional method based on chain circuit rate attenuation, " \
