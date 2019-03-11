@@ -88,6 +88,8 @@ if __name__ == '__main__':
     #test_pd = Excel2pd().excel2pd()
     #print(test_pd)
 
+    seg_grammer = r"NOVELTY - |USE - |ADVANTAGE - |Advantages are: |DETAILED DESCRIPTION - |DESCRIPTION OF DRAWING(S) -"
+
     doc = u" Therefore, the invention considers the chain circuit attenuation and the effects of interference and descending load of region. " \
           u"Compared with traditional method based on chain circuit rate attenuation, " \
           u"the invention approaches to mobile station distribution method of the real WCDMA (wideband code division multiple access) system. "
