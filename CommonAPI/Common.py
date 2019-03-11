@@ -19,7 +19,7 @@ fh.setLevel(logging.DEBUG)
 formatter = logging.Formatter("%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s")
 fh.setFormatter(formatter)
 logger.addHandler(fh)
-print('这里是测试内容：{}'.format(conf.get('data_source','path')))
+# print('这里是测试内容：{}'.format(conf.get('data_source','path')))
 
 class Excel2pd(object):
 
@@ -62,6 +62,20 @@ class Segement(object):
 
         return listOfTokens
 
+    def findall(self):
+        '''
+        摘取目标段落
+        :return:
+        '''
+        try:
+            listOfTokens = self.regEx.findall(self.text)
+        except Exception as e:
+            logger.info(u"失败原因：")
+            logger.info(e)
+            raise e
+
+        return listOfTokens
+
 class PosTag(object):
     def __init__(self, doc):
         self.doc = doc
@@ -85,14 +99,45 @@ class PosTag(object):
 
 
 if __name__ == '__main__':
-    #test_pd = Excel2pd().excel2pd()
-    #print(test_pd)
+    # test_pd = Excel2pd().excel2pd()
+    # print(test_pd)
 
-    seg_grammer = r"NOVELTY - |USE - |ADVANTAGE - |Advantages are: |DETAILED DESCRIPTION - |DESCRIPTION OF DRAWING(S) -"
+    seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"
+    find_grammer = r"(NOVELTY - )[.\n]$(\.\b(\b+))"
+    text_1 = u"   NOVELTY - The method involves sending a maximum distributable bandwidth by a node to acquire data. " \
+           u"Use status of a network resource is confirmed based on a comparison result with a threshold value. " \
+           u"The bandwidth to send data is confirmed based on the status. " \
+           u"The data is sent to another node by the former node based on the bandwidth. " \
+           u"A request time used by the former node to acquire a data sending right is compared with an average time of the former node. " \
+           u"Maximum and minimum distributable bandwidths are distributed to the former node, " \
+           u"if time rate is more than and less than respective threshold values.    " \
+           u"USE - Method for sending data in a distributed non-cooperative network grid.    " \
+           u"ADVANTAGE - The method utilizes the resource in a reasonable manner, and prevents the nodes from occupying a channel, " \
+           u"so that other nodes do not acquire the bandwidth, thus prolonging the delay.    " \
+           u"DETAILED DESCRIPTION - INDEPENDENT CLAIMS are also included for the following:    " \
+           u"(1) a data sending system in distributed non-cooperative network grid    " \
+           u"(2) a data sending node in distributed non-cooperative network grid.    " \
+           u"DESCRIPTION OF DRAWING(S) - The drawing shows a flow diagram of a data sending method. `(Drawing includes non-English language text)` "
 
-    doc = u" Therefore, the invention considers the chain circuit attenuation and the effects of interference and descending load of region. " \
-          u"Compared with traditional method based on chain circuit rate attenuation, " \
-          u"the invention approaches to mobile station distribution method of the real WCDMA (wideband code division multiple access) system. "
-    pos_test = PosTag(doc)
-    sentence = pos_test.preprocess()
-    print(sentence)
+    text_2 = "   NOVELTY - Core of the invention is that based on condition of protocol test, levels of units not related to protocol, " \
+             "and units related to protocol are divided. " \
+             "The units not related to protocol executes operation processes, " \
+             "which are not related to specific content of protocol and are suitable to test any protocol. " \
+             "The units related to protocol is in charge of operation processes for specific testing protocol. " \
+             "Further, the invention marks off corresponding general procedure module for protocol test from units related to " \
+             "protocol as a common part in use for testing each protocol repeatedly. " \
+             "Advantages are: ensuring reusability of protocol related layer furthest, " \
+             "avoiding rehandling development procedure for testing set. " \
+             "The invention possesses high generality, reusability and extensibility. "
+
+    seg_test_1 = Segement(seg_grammer_1, text_1).segement()
+    seg_test_2 = Segement(seg_grammer_1, text_2).segement()
+    print(seg_test_1)
+    print(seg_test_2)
+
+    # doc = u" Therefore, the invention considers the chain circuit attenuation and the effects of interference and descending load of region. " \
+    #       u"Compared with traditional method based on chain circuit rate attenuation, " \
+    #       u"the invention approaches to mobile station distribution method of the real WCDMA (wideband code division multiple access) system. "
+    # pos_test = PosTag(doc)
+    # sentence = pos_test.preprocess()
+    # print(sentence)
