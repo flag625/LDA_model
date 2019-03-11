@@ -18,16 +18,32 @@ fh.setLevel(logging.DEBUG)
 formatter = logging.Formatter("%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s")
 fh.setFormatter(formatter)
 logger.addHandler(fh)
-print('这里是测试内容：{}'.format(conf.get('logging','log_path')))
+print('这里是测试内容：{}'.format(conf.get('data_source','path')))
 
 class Excel2pd(object):
+
+    # 获取数据源地址
     def __init__(self):
         self.data_path = conf.get('data_source','path')
 
+    # 将Excel文件转化为dataframe,并返回
     def excel2pd(self):
-        df = pd.read_excel(self.data_path)
+        try:
+            df = pd.read_excel(self.data_path)
+        except Exception as e:
+            logger.info(u"失败原因：")
+            logger.info(e)
+            raise e
+
         return df
 
+class Segement(object):
+    def __init__(self, regEx, article):
+        self.regEx = regEx
+        self.article = article
+
+
+
 if __name__ == '__main__':
-    test_pd = Excel2pd.excel2pd()
+    test_pd = Excel2pd().excel2pd()
     print(test_pd)
