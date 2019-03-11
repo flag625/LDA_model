@@ -40,20 +40,21 @@ class Excel2pd(object):
 
 class Segement(object):
     # 按照规则一分段，NOVELTY作为技术词来源，USE和ADVANTAGE作为功效词来源
-    def __init__(self, regEx, text):
+    def __init__(self, text):
         '''
-        :param regEx: 分段正则式
         :param text: 被分段的文本
         '''
-        self.regEx = re.compile(regEx)
+
         self.text = text
 
-    def segement(self):
+    def segement(self, regEx):
         '''
         分段
+        :param regEx: 分段正则式
         :return: list
         '''
         try:
+            self.regEx = re.compile(regEx)
             listOfTokens = self.regEx.split(self.text)
         except Exception as e:
             logger.info(u"失败原因：")
@@ -62,12 +63,13 @@ class Segement(object):
 
         return listOfTokens
 
-    def findall(self):
+    def findall(self, search_regEx):
         '''
         摘取目标段落
         :return:
         '''
         try:
+            self.regEx = re.compile(search_regEx)
             listOfTokens = self.regEx.findall(self.text)
         except Exception as e:
             logger.info(u"失败原因：")
@@ -80,16 +82,19 @@ class PosTag(object):
     def __init__(self, doc):
         self.doc = doc
 
-    # 词性标记
     def preprocess(self):
+        '''
+        词性标记
+        :return: list
+        '''
         sentences = nltk.sent_tokenize(self.doc)
         sentences = [nltk.word_tokenize(sent) for sent in sentences]
         sentences = [nltk.pos_tag(sent) for sent in sentences]
         return sentences
 
-    # 按照语法分块
     def chunking(self, grammar, sentence):
         '''
+        按照语法分块
         :param grammar:  名词短语的语法规则
         :return:
         '''
@@ -103,7 +108,7 @@ if __name__ == '__main__':
     # print(test_pd)
 
     seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"
-    find_grammer = r"^(NOVELTY - )."
+    # find_grammer = r"^(NOVELTY - )."
     text_1 = u"   NOVELTY - The method involves sending a maximum distributable bandwidth by a node to acquire data. " \
            u"Use status of a network resource is confirmed based on a comparison result with a threshold value. " \
            u"The bandwidth to send data is confirmed based on the status. " \
@@ -130,10 +135,10 @@ if __name__ == '__main__':
              "avoiding rehandling development procedure for testing set. " \
              "The invention possesses high generality, reusability and extensibility. "
 
-    # seg_test_1 = Segement(seg_grammer_1, text_1).segement()
-    # seg_test_2 = Segement(seg_grammer_1, text_2).segement()
+    # seg_test_1 = Segement(text_1).segement(seg_grammer_1)
+    # seg_test_2 = Segement(text_2).segement(seg_grammer_1)
 
-    find_test = Segement(find_grammer, text_1).findall()
+    find_test = Segement(text_1).findall()
     # print(seg_test_1)
     # print(seg_test_2)
     print(find_test)
