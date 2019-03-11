@@ -44,7 +44,6 @@ class Segement(object):
         '''
         :param text: 被分段的文本
         '''
-
         self.text = text
 
     def segement(self, regEx):
@@ -70,7 +69,7 @@ class Segement(object):
         '''
         try:
             self.regEx = re.compile(search_regEx)
-            listOfTokens = self.regEx.findall(self.text)
+            listOfTokens = self.regEx.search(self.text)
         except Exception as e:
             logger.info(u"失败原因：")
             logger.info(e)
@@ -108,7 +107,9 @@ if __name__ == '__main__':
     # print(test_pd)
 
     seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"
-    # find_grammer = r"^(NOVELTY - )."
+
+    find_grammer = r"NOVELTY - (.*)USE - (.*?)"
+
     text_1 = u"   NOVELTY - The method involves sending a maximum distributable bandwidth by a node to acquire data. " \
            u"Use status of a network resource is confirmed based on a comparison result with a threshold value. " \
            u"The bandwidth to send data is confirmed based on the status. " \
@@ -138,10 +139,11 @@ if __name__ == '__main__':
     # seg_test_1 = Segement(text_1).segement(seg_grammer_1)
     # seg_test_2 = Segement(text_2).segement(seg_grammer_1)
 
-    find_test = Segement(text_1).findall()
+    find_test = Segement(text_2).findall(find_grammer)
     # print(seg_test_1)
     # print(seg_test_2)
-    print(find_test)
+    print(find_test.group(1))
+    print(find_test.group(2))
 
     # doc = u" Therefore, the invention considers the chain circuit attenuation and the effects of interference and descending load of region. " \
     #       u"Compared with traditional method based on chain circuit rate attenuation, " \
