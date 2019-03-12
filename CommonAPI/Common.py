@@ -87,6 +87,7 @@ class Segement(object):
         '''
          摘取技术词段落。
         :param find_regEx: 目标对象的正则式
+        :param full: 判断摘要是否只有NOVELTY部分，默认为False
         :return: 目标段落
         '''
         self.regEx = re.compile(find_regEx)
