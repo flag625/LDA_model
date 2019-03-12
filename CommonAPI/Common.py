@@ -169,10 +169,13 @@ if __name__ == '__main__':
     # seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"
 
     # 技术词的分段语法，有一条记录有“Advantages are: ”，手工处理
-    find_nov_grammer = r"NOVELTY - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s\-\s(.*)"
+    find_nov_grammer = r'NOVELTY - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s-\s(.*)'
 
-    # 功效词的分段语法
-    find_use_grammer = r".*USE - (.*?)\s\s\sADVANTAGE - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s\-\s(.*)"
+    # 功效词-USE部分的分段语法
+    find_use_grammer = r'USE - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s-\s(.*)'
+
+    # 功效词-ADVANTAGE部分的分段语法
+    find_adv_grammer = r'ADVANTAGE - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s-\s(.*)'
 
     text_1 = u"   NOVELTY - The method involves sending a maximum distributable bandwidth by a node to acquire data. " \
            u"Use status of a network resource is confirmed based on a comparison result with a threshold value. " \
@@ -181,9 +184,9 @@ if __name__ == '__main__':
            u"A request time used by the former node to acquire a data sending right is compared with an average time of the former node. " \
            u"Maximum and minimum distributable bandwidths are distributed to the former node, " \
            u"if time rate is more than and less than respective threshold values.    " \
-           u"USE - Method for sending data in a distributed non-cooperative network grid.    " \
            u"ADVANTAGE - The method utilizes the resource in a reasonable manner, and prevents the nodes from occupying a channel, " \
            u"so that other nodes do not acquire the bandwidth, thus prolonging the delay.    " \
+           u"USE - Method for sending data in a distributed non-cooperative network grid.    " \
            u"DETAILED DESCRIPTION - INDEPENDENT CLAIMS are also included for the following:    " \
            u"(1) a data sending system in distributed non-cooperative network grid    " \
            u"(2) a data sending node in distributed non-cooperative network grid.    " \
@@ -210,7 +213,11 @@ if __name__ == '__main__':
     # seg_test_1 = Segement(text_1).segement(seg_grammer_1)
     # seg_test_2 = Segement(text_2).segement(seg_grammer_1)
 
-    res = re.search(find_use_grammer, text_1)
+    use = re.search(find_use_grammer, text_1)
+    print(use.group(1))
+
+    # adv = re.search(find_adv_grammer, text_1)
+    # print(adv.group(1))
 
     # find_test = Segement(text_3).findall(find_nov_grammer)
     # print(seg_test_1)
