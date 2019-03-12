@@ -27,6 +27,7 @@ class Excel2pd(object):
     # 获取数据源地址
     def __init__(self):
         self.data_path = conf.get('data_source','path')
+        # self.data_path = conf.get('data_source','test_path')
 
     # 将Excel文件转化为dataframe,并返回
     def excel2pd(self):
@@ -82,7 +83,7 @@ class Segement(object):
 
         return listOfTokens
 
-    def find_tech(self, find_regEx, all=False):
+    def find_tech(self, find_regEx, full=False):
         '''
          摘取技术词段落。
         :param find_regEx: 目标对象的正则式
@@ -90,8 +91,8 @@ class Segement(object):
         '''
         self.regEx = re.compile(find_regEx)
         try:
-            if all:
-                self.regEx = re.compile(r"NOVELTY - (.*)")
+            if full:
+                self.regEx = re.compile(conf.get('grammer','find_tech_full_grammer'))
             listOfTokens = self.regEx.search(self.text)
         except Exception as e:
             logger.info(u"失败原因：")
@@ -109,7 +110,11 @@ class Segement(object):
         self.regEx = re.compile(find_regEx)
         try:
             listOfTokens = self.regEx.search(self.text)
-            res = listOfTokens.group(1) + listOfTokens.group(2)
+            if not listOfTokens:
+                listOfTokens = re.search(conf.get('grammer','find_func_use_grammer'),self.text)
+                res = listOfTokens.group(1)
+            else:
+                res = listOfTokens.group(1) + listOfTokens.group(2)
         except Exception as e:
             logger.info(u"失败原因：")
             logger.info(e)
@@ -145,7 +150,8 @@ class PosTag(object):
 
 
 if __name__ == '__main__':
-    # test_pd = Excel2pd().excel2pd()
+    test_pd = Excel2pd().excel2pd()
+    # print(test_pd.ix[:,['AB ']])
     # tmp = Df2excel(test_pd)
     # res = tmp.add_col("tech")
     # tmp.df2excel("tmp")
@@ -205,8 +211,8 @@ if __name__ == '__main__':
     # seg_test_1 = Segement(text_1).segement(seg_grammer_1)
     # seg_test_2 = Segement(text_2).segement(seg_grammer_1)
 
-    use = re.search(conf.get('grammer','find_tech_grammer'), text_1)
-    print(use.group(1))
+    # use = re.search(conf.get('grammer','find_tech_grammer'), text_1)
+    # print(use.group(1))
     # print(use.group(2))
 
     # func_test = Segement(text_1).find_func(find_fun_grammer)

@@ -24,3 +24,11 @@
 2019-03-12 17:16:45,481 - Common.py[line:114] - INFO: 失败原因：
 2019-03-12 17:16:45,481 - Common.py[line:115] - INFO: 'NoneType' object has no attribute 'group'
 2019-03-12 17:16:45,481 - Common.py[line:115] - INFO: 'NoneType' object has no attribute 'group'
+2019-03-12 20:05:10,184 - Common.py[line:115] - INFO: 失败原因：
+2019-03-12 20:05:10,184 - Common.py[line:115] - INFO: 失败原因：
+2019-03-12 20:05:10,416 - Common.py[line:116] - INFO: 'NoneType' object has no attribute 'group'
+2019-03-12 20:05:10,416 - Common.py[line:116] - INFO: 'NoneType' object has no attribute 'group'
+2019-03-12 20:14:18,884 - Common.py[line:119] - INFO: 失败原因：
+2019-03-12 20:14:18,884 - Common.py[line:119] - INFO: 失败原因：
+2019-03-12 20:14:18,884 - Common.py[line:120] - INFO: search() missing 1 required positional argument: 'string'
+2019-03-12 20:14:18,884 - Common.py[line:120] - INFO: search() missing 1 required positional argument: 'string'
