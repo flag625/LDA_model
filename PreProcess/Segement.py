@@ -38,9 +38,9 @@ class Segements(object):
             logger.info(e)
             raise e
 
-    def find(self, text, regEx, tech):
+    def find(self, text, regEx, tech, all=False):
         if tech == 1:
-            res = comm.Segement(text).find_tech(regEx)
+            res = comm.Segement(text).find_tech(regEx, all)
         elif tech == 0:
             res = comm.Segement(text).find_func(regEx)
         return res
@@ -52,4 +52,15 @@ if __name__ == '__main__':
     # print(seg.df)
     seg.add_col('tech')
     seg.add_col('func')
-    print(seg.df)
+    # print(seg.df)
+    num = 0
+    for abstract in seg.df.ix[:,1]:
+        if not re.search(conf.get('grammer','rejudge'), abstract):
+            seg.df['tech'][num] = seg.find(abstract,conf.get('grammer','find_tech_grammer'),1,True)
+        else:
+            seg.df['tech'][num] = seg.find(abstract,conf.get('grammer','find_tech_grammer'),1)
+            seg.df['func'][num] = seg.find(abstract,conf.get('grammer','find_func_grammer'),0)
+        num += 1
+    print('完成 ： %s' %num)
+    print('---'*20)
+    print(seg.df['func'])
