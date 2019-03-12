@@ -51,7 +51,8 @@ class Df2excel(object):
         :return: df
         '''
         try:
-            self.df[new_col] = np.empty((len(self.df),0)).tolist()
+            self.df[new_col] = None
+                # np.empty((len(self.df),0)).tolist()
         except Exception as e:
             logger.info(u"失败原因：")
             logger.info(e)
@@ -148,7 +149,7 @@ if __name__ == '__main__':
     tmp = Df2excel(test_pd)
     res = tmp.add_col("tech")
     tmp.df2excel("tmp")
-    # print(res)
+    print(res)
 
     # 整体分段语法
     # seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"
