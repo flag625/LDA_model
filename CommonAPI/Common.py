@@ -59,6 +59,18 @@ class Df2excel(object):
 
         return self.df
 
+    def df2excel(self, file_name):
+        '''
+        dataframe转换为Excel, 保存在tmp文件夹
+        :return:
+        '''
+        file = os.path.join(conf.get('tmp','path'),file_name+'.xlsx')
+        try:
+            self.df.to_excel(file, encoding='utf-8', index=False)
+        except Exception as e:
+            logger.info(u"失败原因：")
+            logger.info(e)
+            raise e
 
 class Segement(object):
     # 按照规则一分段，NOVELTY作为技术词来源，USE和ADVANTAGE作为功效词来源
@@ -133,8 +145,10 @@ class PosTag(object):
 
 if __name__ == '__main__':
     test_pd = Excel2pd().excel2pd()
-    res = Df2excel(test_pd).add_col("tech")
-    print(res)
+    tmp = Df2excel(test_pd)
+    res = tmp.add_col("tech")
+    tmp.df2excel("tmp")
+    # print(res)
 
     # 整体分段语法
     # seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"

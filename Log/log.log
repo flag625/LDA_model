@@ -4,3 +4,5 @@
 2019-03-11 19:05:28,389 - Common.py[line:79] - INFO: 'NoneType' object has no attribute 'span'
 2019-03-11 19:06:22,856 - Common.py[line:77] - INFO: 失败原因：
 2019-03-11 19:06:22,857 - Common.py[line:78] - INFO: 'NoneType' object has no attribute 'span'
+2019-03-12 10:17:29,987 - Common.py[line:71] - INFO: 失败原因：
+2019-03-12 10:17:30,018 - Common.py[line:72] - INFO: No engine for filetype: ''
