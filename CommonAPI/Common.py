@@ -126,12 +126,13 @@ class Segement(object):
         self.regEx = re.compile(find_regEx)
         try:
             listOfTokens = self.regEx.search(self.text)
+            res = listOfTokens.group(1) + listOfTokens.group(2)
         except Exception as e:
             logger.info(u"失败原因：")
             logger.info(e)
             raise e
 
-        return listOfTokens.group(1)
+        return res
 
 
 
@@ -172,6 +173,9 @@ if __name__ == '__main__':
 
     # 技术词的分段语法，有一条记录有“Advantages are: ”，手工处理
     find_nov_grammer = r'NOVELTY - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s-\s(.*)'
+
+    # 功效词的分段语法
+    find_fun_grammer = r'USE - (.*?)ADVANTAGE - (.*?)\s\s\s[A-Z]*\s[A-Z]*\s-\s(.*)'
 
     # 功效词-USE部分的分段语法
     find_use_grammer = r'USE - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s-\s(.*)'
@@ -215,9 +219,12 @@ if __name__ == '__main__':
     # seg_test_1 = Segement(text_1).segement(seg_grammer_1)
     # seg_test_2 = Segement(text_2).segement(seg_grammer_1)
 
-    use = re.search(r'USE - (.*?)ADVANTAGE - (.*?)\s\s\s[A-Z]*\s[A-Z]*\s-\s(.*)', text_1)
-    print(use.group(1))
-    print(use.group(2))
+    # use = re.search(r'USE - (.*?)ADVANTAGE - (.*?)\s\s\s[A-Z]*\s[A-Z]*\s-\s(.*)', text_1)
+    # print(use.group(1))
+    # print(use.group(2))
+
+    func_test = Segement(text_1).find_func(find_fun_grammer)
+    print(func_test)
 
     # adv = re.search(find_adv_grammer, text_1)
     # print(adv.group(1))
