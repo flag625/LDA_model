@@ -122,13 +122,12 @@ class Segement(object):
         elif tech == 0:
             try:
                 listOfTokens = self.regEx.search(self.text)
-                res = [listOfTokens.group(1), listOfTokens.group(2)]
             except Exception as e:
                 logger.info(u"失败原因：")
                 logger.info(e)
                 raise e
 
-            return res
+            return listOfTokens.group(1)
 
         return None
 
@@ -165,8 +164,8 @@ if __name__ == '__main__':
     # tmp.df2excel("tmp")
     # print(res)
 
-    # 整体分段语法
-    # seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"
+    # 分段语法，以USE为界将文本分成两部分
+    seg_grammer_1 = r'USE - '
 
     # 技术词的分段语法，有一条记录有“Advantages are: ”，手工处理
     find_nov_grammer = r'NOVELTY - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s-\s(.*)'
