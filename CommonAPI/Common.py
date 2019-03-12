@@ -63,6 +63,7 @@ class Df2excel(object):
     def df2excel(self, file_name):
         '''
         dataframe转换为Excel, 保存在tmp文件夹
+        :param file_name: 保存文件名
         :return:
         '''
         file = os.path.join(conf.get('tmp','path'),file_name+'.xlsx')
