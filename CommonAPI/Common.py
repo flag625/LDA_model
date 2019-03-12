@@ -205,12 +205,12 @@ if __name__ == '__main__':
     # seg_test_1 = Segement(text_1).segement(seg_grammer_1)
     # seg_test_2 = Segement(text_2).segement(seg_grammer_1)
 
-    # use = re.search(r'USE - (.*?)ADVANTAGE - (.*?)\s\s\s[A-Z]*\s[A-Z]*\s-\s(.*)', text_1)
-    # print(use.group(1))
+    use = re.search(conf.get('grammer','find_tech_grammer'), text_1)
+    print(use.group(1))
     # print(use.group(2))
 
-    func_test = Segement(text_1).find_func(find_fun_grammer)
-    print(func_test)
+    # func_test = Segement(text_1).find_func(find_fun_grammer)
+    # print(func_test)
 
     # adv = re.search(find_adv_grammer, text_1)
     # print(adv.group(1))
