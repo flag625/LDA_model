@@ -44,22 +44,6 @@ class Df2excel(object):
     def __init__(self, df):
         self.df = df
 
-    def add_col(self, new_col):
-        '''
-        增加一个新的空数据列
-        :param new_col: 新列的名称
-        :return: df
-        '''
-        try:
-            self.df[new_col] = None
-                # np.empty((len(self.df),0)).tolist()
-        except Exception as e:
-            logger.info(u"失败原因：")
-            logger.info(e)
-            raise e
-
-        return self.df
-
     def df2excel(self, file_name):
         '''
         dataframe转换为Excel, 保存在tmp文件夹
@@ -81,7 +65,6 @@ class Segement(object):
         :param text: 被分段的文本
         '''
         self.text = text
-        self.search_pattern = r"USE - |ADVANTAGE - |DETAILED DESCRIPTION - |DESCRIPTION OF DRAWING(S) -"
 
     def segement(self, regEx):
         '''
@@ -99,7 +82,7 @@ class Segement(object):
 
         return listOfTokens
 
-    def find_tech(self, find_regEx):
+    def find_tech(self, find_regEx, all=False):
         '''
          摘取技术词段落。
         :param find_regEx: 目标对象的正则式
@@ -107,7 +90,7 @@ class Segement(object):
         '''
         self.regEx = re.compile(find_regEx)
         try:
-            if not re.search(self.search_pattern, self.text):
+            if all:
                 self.regEx = re.compile(r"NOVELTY - (.*)")
             listOfTokens = self.regEx.search(self.text)
         except Exception as e:
@@ -170,6 +153,9 @@ if __name__ == '__main__':
 
     # 分段语法，以USE为界将文本分成两部分
     seg_grammer_1 = r'USE - '
+
+    # 判断摘要是否只要NOVELTY部分
+    search_pattern = r"USE - |ADVANTAGE - |DETAILED DESCRIPTION - |DESCRIPTION OF DRAWING(S) -"
 
     # 技术词的分段语法，有一条记录有“Advantages are: ”，手工处理
     find_nov_grammer = r'NOVELTY - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s-\s(.*)'
