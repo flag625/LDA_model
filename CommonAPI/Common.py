@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pandas as pd
+import numpy as np
 import json
 import os
 import string
@@ -37,6 +38,27 @@ class Excel2pd(object):
             raise e
 
         return df
+
+class Df2excel(object):
+    # 获取目标dataframe
+    def __init__(self, df):
+        self.df = df
+
+    def add_col(self, new_col):
+        '''
+        增加一个新的空数据列
+        :param new_col: 新列的名称
+        :return: df
+        '''
+        try:
+            self.df[new_col] = np.empty((len(self.df),0)).tolist()
+        except Exception as e:
+            logger.info(u"失败原因：")
+            logger.info(e)
+            raise e
+
+        return self.df
+
 
 class Segement(object):
     # 按照规则一分段，NOVELTY作为技术词来源，USE和ADVANTAGE作为功效词来源
@@ -110,10 +132,12 @@ class PosTag(object):
 
 
 if __name__ == '__main__':
-    # test_pd = Excel2pd().excel2pd()
-    # print(test_pd)
+    test_pd = Excel2pd().excel2pd()
+    res = Df2excel(test_pd).add_col("tech")
+    print(res)
 
-    seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"
+    # 整体分段语法
+    # seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"
 
     # 技术词的分段语法，有一条记录有“Advantages are: ”，手工处理
     find_nov_grammer = r"NOVELTY - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s\-\s(.*)"
@@ -154,10 +178,10 @@ if __name__ == '__main__':
     # seg_test_1 = Segement(text_1).segement(seg_grammer_1)
     # seg_test_2 = Segement(text_2).segement(seg_grammer_1)
 
-    find_test = Segement(text_3).findall(find_nov_grammer)
+    # find_test = Segement(text_3).findall(find_nov_grammer)
     # print(seg_test_1)
     # print(seg_test_2)
-    print(find_test)
+    # print(find_test)
 
     # doc = u" Therefore, the invention considers the chain circuit attenuation and the effects of interference and descending load of region. " \
     #       u"Compared with traditional method based on chain circuit rate attenuation, " \
