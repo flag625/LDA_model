@@ -60,7 +60,7 @@ if __name__ == '__main__':
         else:
             seg.df['tech'][num] = seg.find(abstract,conf.get('grammer','find_tech_grammer'),1)
             seg.df['func'][num] = seg.find(abstract,conf.get('grammer','find_func_grammer'),0)
+        print('完成 ： %s' % num)
         num += 1
-    print('完成 ： %s' %num)
     print('---'*20)
     print(seg.df['func'])

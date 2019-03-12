@@ -16,3 +16,11 @@
 2019-03-12 17:11:52,327 - Common.py[line:114] - INFO: 失败原因：
 2019-03-12 17:11:52,358 - Common.py[line:115] - INFO: 'NoneType' object has no attribute 'group'
 2019-03-12 17:11:52,358 - Common.py[line:115] - INFO: 'NoneType' object has no attribute 'group'
+2019-03-12 17:13:16,867 - Common.py[line:114] - INFO: 失败原因：
+2019-03-12 17:13:16,867 - Common.py[line:114] - INFO: 失败原因：
+2019-03-12 17:13:16,867 - Common.py[line:115] - INFO: 'NoneType' object has no attribute 'group'
+2019-03-12 17:13:16,867 - Common.py[line:115] - INFO: 'NoneType' object has no attribute 'group'
+2019-03-12 17:16:45,481 - Common.py[line:114] - INFO: 失败原因：
+2019-03-12 17:16:45,481 - Common.py[line:114] - INFO: 失败原因：
+2019-03-12 17:16:45,481 - Common.py[line:115] - INFO: 'NoneType' object has no attribute 'group'
+2019-03-12 17:16:45,481 - Common.py[line:115] - INFO: 'NoneType' object has no attribute 'group'
