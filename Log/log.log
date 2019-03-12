@@ -8,3 +8,7 @@
 2019-03-12 10:17:30,018 - Common.py[line:72] - INFO: No engine for filetype: ''
 2019-03-12 10:38:55,461 - Common.py[line:57] - INFO: 失败原因：
 2019-03-12 10:38:55,527 - Common.py[line:58] - INFO: Wrong number of items passed 0, placement implies 1
+2019-03-12 11:01:28,128 - Common.py[line:126] - INFO: 失败原因：
+2019-03-12 11:01:28,144 - Common.py[line:127] - INFO: 'NoneType' object has no attribute 'group'
+2019-03-12 11:02:09,921 - Common.py[line:126] - INFO: 失败原因：
+2019-03-12 11:02:09,921 - Common.py[line:127] - INFO: 'NoneType' object has no attribute 'group'

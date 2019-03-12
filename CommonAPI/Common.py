@@ -106,9 +106,9 @@ class Segement(object):
         :param tech: 判断，tech=1 摘取技术词段落，tech=0 摘取功效词段落
         :return:
         '''
+        self.regEx = re.compile(find_regEx)
         if tech == 1:
             try:
-                self.regEx = re.compile(find_regEx)
                 if not re.search(self.search_pattern, self.text):
                     self.regEx = re.compile(r"NOVELTY - (.*)")
                 listOfTokens = self.regEx.search(self.text)
@@ -118,6 +118,19 @@ class Segement(object):
                 raise e
 
             return listOfTokens.group(1)
+
+        elif tech == 0:
+            try:
+                listOfTokens = self.regEx.search(self.text)
+                res = [listOfTokens.group(1), listOfTokens.group(2)]
+            except Exception as e:
+                logger.info(u"失败原因：")
+                logger.info(e)
+                raise e
+
+            return res
+
+        return None
 
 
 class PosTag(object):
@@ -146,17 +159,20 @@ class PosTag(object):
 
 
 if __name__ == '__main__':
-    test_pd = Excel2pd().excel2pd()
-    tmp = Df2excel(test_pd)
-    res = tmp.add_col("tech")
-    tmp.df2excel("tmp")
-    print(res)
+    # test_pd = Excel2pd().excel2pd()
+    # tmp = Df2excel(test_pd)
+    # res = tmp.add_col("tech")
+    # tmp.df2excel("tmp")
+    # print(res)
 
     # 整体分段语法
     # seg_grammer_1 = r"   NOVELTY - |   USE - |   ADVANTAGE - |Advantages are: |   DETAILED DESCRIPTION - |   DESCRIPTION OF DRAWING(S) -"
 
     # 技术词的分段语法，有一条记录有“Advantages are: ”，手工处理
     find_nov_grammer = r"NOVELTY - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s\-\s(.*)"
+
+    # 功效词的分段语法
+    find_use_grammer = r".*USE - (.*?)\s\s\sADVANTAGE - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s\-\s(.*)"
 
     text_1 = u"   NOVELTY - The method involves sending a maximum distributable bandwidth by a node to acquire data. " \
            u"Use status of a network resource is confirmed based on a comparison result with a threshold value. " \
@@ -194,10 +210,15 @@ if __name__ == '__main__':
     # seg_test_1 = Segement(text_1).segement(seg_grammer_1)
     # seg_test_2 = Segement(text_2).segement(seg_grammer_1)
 
+    res = re.search(find_use_grammer, text_1)
+
     # find_test = Segement(text_3).findall(find_nov_grammer)
     # print(seg_test_1)
     # print(seg_test_2)
     # print(find_test)
+
+    # use_list = Segement(text_1).findall(find_use_grammer, tech=0)
+    # print(use_list)
 
     # doc = u" Therefore, the invention considers the chain circuit attenuation and the effects of interference and descending load of region. " \
     #       u"Compared with traditional method based on chain circuit rate attenuation, " \
