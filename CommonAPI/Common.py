@@ -63,22 +63,26 @@ class Segement(object):
 
         return listOfTokens
 
-    def findall(self, find_regEx):
+    def findall(self, find_regEx, tech=1):
         '''
-        摘要是规范时，摘取目标段落。
-        :return: str
+         摘要是规范时，摘取目标段落。
+        :param find_regEx: 目标对象的正则式
+        :param tech: 判断，tech=1 摘取技术词段落，tech=0 摘取功效词段落
+        :return:
         '''
-        try:
-            self.regEx = re.compile(find_regEx)
-            if not re.search(self.search_pattern, self.text):
-                self.regEx = re.compile(r"NOVELTY - (.*)")
-            listOfTokens = self.regEx.search(self.text)
-        except Exception as e:
-            logger.info(u"失败原因：")
-            logger.info(e)
-            raise e
+        if tech == 1:
+            try:
+                self.regEx = re.compile(find_regEx)
+                if not re.search(self.search_pattern, self.text):
+                    self.regEx = re.compile(r"NOVELTY - (.*)")
+                listOfTokens = self.regEx.search(self.text)
+            except Exception as e:
+                logger.info(u"失败原因：")
+                logger.info(e)
+                raise e
 
-        return listOfTokens.group(1)
+            return listOfTokens.group(1)
+
 
 class PosTag(object):
     def __init__(self, doc):
