@@ -24,7 +24,7 @@ class Segements(object):
         self.df = comm.Excel2pd().excel2pd()
 
     def pd2excel(self, filename):
-        comm.Df2excel(self.df).df2excel()
+        comm.Df2excel(self.df).df2excel(filename)
 
     def add_col(self, colname):
         '''
@@ -62,5 +62,6 @@ if __name__ == '__main__':
             seg.df['func'][num] = seg.find(abstract,conf.get('grammer','find_func_grammer'),0)
         print('完成 ： %s' % num)
         num += 1
-    print('---'*20)
-    print(seg.df['func'])
+    # print('---'*20)
+    # print(seg.df['func'])
+    seg.pd2excel('test_1')
