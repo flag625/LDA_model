@@ -48,13 +48,14 @@ class Segements(object):
 
 if __name__ == '__main__':
     seg = Segements()
-    seg.excel2pd('patents_1134')
+    # seg.excel2pd('patents_1134')
+    seg.excel2pd('test')
     # print(seg.df)
     seg.add_col('tech')
     seg.add_col('func')
     # print(seg.df)
     num = 0
-    for abstract in seg.df.ix[:,3]:
+    for abstract in seg.df.ix[:,'AB']:
         if not re.search(conf.get('grammer','rejudge'), abstract):
             seg.df['tech'][num] = seg.find(abstract,conf.get('grammer','find_tech_grammer'),1,True)
         else:

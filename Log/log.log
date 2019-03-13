@@ -32,3 +32,7 @@
 2019-03-12 20:14:18,884 - Common.py[line:119] - INFO: 失败原因：
 2019-03-12 20:14:18,884 - Common.py[line:120] - INFO: search() missing 1 required positional argument: 'string'
 2019-03-12 20:14:18,884 - Common.py[line:120] - INFO: search() missing 1 required positional argument: 'string'
+2019-03-13 10:45:47,867 - Common.py[line:36] - INFO: 失败原因：
+2019-03-13 10:45:47,867 - Common.py[line:36] - INFO: 失败原因：
+2019-03-13 10:45:47,899 - Common.py[line:37] - INFO: [Errno 2] No such file or directory: 'E:/python/LDA_model/Data\\test.xlsx.xlsx'
+2019-03-13 10:45:47,899 - Common.py[line:37] - INFO: [Errno 2] No such file or directory: 'E:/python/LDA_model/Data\\test.xlsx.xlsx'

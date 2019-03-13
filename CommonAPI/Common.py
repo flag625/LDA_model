@@ -112,6 +112,8 @@ class Segement(object):
             listOfTokens = self.regEx.search(self.text)
             if not listOfTokens:
                 listOfTokens = re.search(conf.get('grammer','find_func_use_grammer'),self.text)
+                if not listOfTokens:
+                    listOfTokens = re.search(conf.get('grammer','find_func_adv_grammer'),self.text)
                 res = listOfTokens.group(1)
             else:
                 res = listOfTokens.group(1) + listOfTokens.group(2)
@@ -151,7 +153,7 @@ class PosTag(object):
 
 if __name__ == '__main__':
     test_pd = Excel2pd('test').excel2pd()
-    print(test_pd)
+    # print(test_pd)
     # print(test_pd.ix[:,['AB ']])
     # tmp = Df2excel(test_pd)
     # res = tmp.add_col("tech")
@@ -162,7 +164,14 @@ if __name__ == '__main__':
     seg_grammer_1 = r'USE - '
 
     # 判断摘要是否只要NOVELTY部分
-    search_pattern = r"USE - |ADVANTAGE - |DETAILED DESCRIPTION - |DESCRIPTION OF DRAWING(S) -"
+    # search_pattern = r"USE - |ADVANTAGE - |DETAILED DESCRIPTION - |DESCRIPTION OF DRAWING(S) -"
+    search = r'USE - |ADVANTAGE - |Advantages are: |DETAILED DESCRIPTION - |DESCRIPTION OF DRAWING(S) -'
+    num = 1
+    for doc in test_pd.ix[:,1]:
+        test = re.search(search, doc)
+        print(num)
+        print(test)
+        num += 1
 
     # 技术词的分段语法，有一条记录有“Advantages are: ”，手工处理
     find_nov_grammer = r'NOVELTY - (.*?)\s\s\s[A-Z][A-Z][A-Z][A-Z]*\s-\s(.*)'
