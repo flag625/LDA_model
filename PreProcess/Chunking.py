@@ -20,6 +20,8 @@ logger.addHandler(fh)
 
 # 提取目标短语块
 class Chunking(object):
+    def __init__(self):
+        self.NounPhrases = []
 
     def preprocess(self, document):
         listOfsents = comm.PosTag().preprocess(document)
@@ -27,8 +29,8 @@ class Chunking(object):
 
     def chunking(self, grammer, sent):
         sentTree = comm.PosTag().chunking(grammer, sent)
-        NounPhrases = self.traverse(sentTree)
-        return (NounPhrases)
+        self.traverse(sentTree)
+        return self.NounPhrases
 
     def traverse(self, sentTree):
         try:
@@ -38,6 +40,8 @@ class Chunking(object):
         else:
             if sentTree.label() == 'NP':
                 print(sentTree)
+                tmp = ' '.join(word  for word, tag in sentTree.leaves())
+                self.NounPhrases.append(tmp)
             else:
                 for child in sentTree:
                     self.traverse(child)
@@ -75,5 +79,6 @@ if __name__ == '__main__':
     #     print(sentence)
 
     res = chunk.chunking(grammer, sentences[1])
+    print(res)
     # print(type(res))
     # res.draw()
