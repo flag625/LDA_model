@@ -58,6 +58,7 @@ class Df2excel(object):
             logger.info(e)
             raise e
 
+# 分段，将技术词来源和功效词来源分开
 class Segement(object):
     # 按照规则一分段，NOVELTY作为技术词来源，USE和ADVANTAGE作为功效词来源
     def __init__(self, text):
@@ -125,29 +126,39 @@ class Segement(object):
         return res
 
 
-
 class PosTag(object):
-    def __init__(self, doc):
-        self.doc = doc
+    def preprocess(self, document):
+        '''
+        分句，分词，标记词性
+        :param document: 被处理的一个文本
+        :return: [list of sentance1:(tunple of word1(word1, postag), ...),list of sentance2,... ]
+        '''
+        try:
+            sentences = nltk.sent_tokenize(document)
+            sentences = [nltk.word_tokenize(sent) for sent in sentences]
+            sentences = [nltk.pos_tag(sent) for sent in sentences]
+        except Exception as e:
+            logger.info(u"失败原因：")
+            logger.info(e)
+            raise e
 
-    def preprocess(self):
-        '''
-        词性标记
-        :return: list
-        '''
-        sentences = nltk.sent_tokenize(self.doc)
-        sentences = [nltk.word_tokenize(sent) for sent in sentences]
-        sentences = [nltk.pos_tag(sent) for sent in sentences]
         return sentences
 
     def chunking(self, grammar, sentence):
         '''
-        按照语法分块
-        :param grammar:  名词短语的语法规则
+        获取目标分块
+        :param grammar: 分块语法
+        :param sentence: list of one sentance:(tunple of word1(word1, postag)
         :return:
         '''
-        cp = nltk.RegexpParser(grammar)
-        res = cp.parse(sentence)
+        try:
+            cp = nltk.RegexpParser(grammar)
+            res = cp.parse(sentence)
+        except Exception as e:
+            logger.info(u"失败原因：")
+            logger.info(e)
+            raise e
+
         return res
 
 
