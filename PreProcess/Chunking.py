@@ -30,6 +30,8 @@ class Chunking(object):
     def chunking(self, grammer, sent):
         sentTree = comm.PosTag().chunking(grammer, sent)
         self.traverse(sentTree)
+
+    def getNounPhrases(self):
         return self.NounPhrases
 
     def traverse(self, sentTree):
@@ -39,17 +41,17 @@ class Chunking(object):
             return
         else:
             if sentTree.label() == 'NP':
-                print(sentTree)
+                # print(sentTree)
                 tmp = ' '.join(word  for word, tag in sentTree.leaves())
                 self.NounPhrases.append(tmp)
             else:
                 for child in sentTree:
                     self.traverse(child)
 
-    def extract_np(self, sentTree):
-        for subtree in sentTree.subtrees():
-            if subtree.label() == 'NP':
-                yield ' '.join(word for word, tag in subtree.leaves())
+    # def extract_np(self, sentTree):
+    #     for subtree in sentTree.subtrees():
+    #         if subtree.label() == 'NP':
+    #             yield ' '.join(word for word, tag in subtree.leaves())
 
 
 # class UnigramChunker(nltk.ChunkinghunkParserI):
@@ -78,7 +80,8 @@ if __name__ == '__main__':
     # for sentence in sentences:
     #     print(sentence)
 
-    res = chunk.chunking(grammer, sentences[1])
+    chunk.chunking(grammer, sentences[1])
+    res = chunk.getNounPhrases()
     print(res)
     # print(type(res))
     # res.draw()
