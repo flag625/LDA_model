@@ -42,7 +42,16 @@ if __name__ == '__main__':
           "seeking and establishing several LSP's and distributing the available bandwidth among the mobile IP users. " \
           "The method can 'dilute' the concentrated burst flows to the wholelocal network to " \
           "eliminate jamming while maintaining the stable local flow rate characteristic. "
+
+    grammer = r"""
+    NP:{<DT|PP\$>?<JJ>*<NN|NNP>}
+       {<NNP>+}
+    """
     chunk = Chunking()
     sentences = chunk.preprocess(doc)
     # for sentence in sentences:
     #     print(sentence)
+
+    res = chunk.chunking(grammer, sentences[1])
+    print(type(res))
+    res.draw()
