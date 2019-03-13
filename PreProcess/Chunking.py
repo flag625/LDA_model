@@ -22,12 +22,34 @@ logger.addHandler(fh)
 class Chunking(object):
 
     def preprocess(self, document):
-        sentences = comm.PosTag().preprocess(document)
-        return sentences
+        listOfsents = comm.PosTag().preprocess(document)
+        return listOfsents
 
-    def chunking(self, grammer, sentence):
-        res = comm.PosTag().chunking(grammer, sentence)
-        return res
+    def chunking(self, grammer, sent):
+        sentTree = comm.PosTag().chunking(grammer, sent)
+        NounPhrases = self.traverse(sentTree)
+        return (NounPhrases)
+
+    def traverse(self, sentTree):
+        try:
+            sentTree.label()
+        except AttributeError:
+            return
+        else:
+            if sentTree.label() == 'NP':
+                print(sentTree)
+            else:
+                for child in sentTree:
+                    self.traverse(child)
+
+    def extract_np(self, sentTree):
+        for subtree in sentTree.subtrees():
+            if subtree.label() == 'NP':
+                yield ' '.join(word for word, tag in subtree.leaves())
+
+
+# class UnigramChunker(nltk.ChunkinghunkParserI):
+
 
 
 if __name__ == '__main__':
@@ -53,5 +75,5 @@ if __name__ == '__main__':
     #     print(sentence)
 
     res = chunk.chunking(grammer, sentences[1])
-    print(type(res))
-    res.draw()
+    # print(type(res))
+    # res.draw()

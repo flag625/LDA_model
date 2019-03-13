@@ -148,18 +148,18 @@ class PosTag(object):
         '''
         获取目标分块
         :param grammar: 分块语法
-        :param sentence: list of one sentance:(tunple of word1(word1, postag)
+        :param sentence: NLTK tree
         :return:
         '''
         try:
             cp = nltk.RegexpParser(grammar)
-            res = cp.parse(sentence)
+            sentTree = cp.parse(sentence)
         except Exception as e:
             logger.info(u"失败原因：")
             logger.info(e)
             raise e
 
-        return res
+        return sentTree
 
 
 if __name__ == '__main__':
