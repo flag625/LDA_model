@@ -20,8 +20,8 @@ class Segements(object):
     def __init__(self):
         self.df = pd.DataFrame()
 
-    def excel2pd(self):
-        self.df = comm.Excel2pd().excel2pd()
+    def excel2pd(self, filename):
+        self.df = comm.Excel2pd(filename).excel2pd()
 
     def pd2excel(self, filename):
         comm.Df2excel(self.df).df2excel(filename)
@@ -48,7 +48,7 @@ class Segements(object):
 
 if __name__ == '__main__':
     seg = Segements()
-    seg.excel2pd()
+    seg.excel2pd('patents_1134')
     # print(seg.df)
     seg.add_col('tech')
     seg.add_col('func')

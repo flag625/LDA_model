@@ -25,9 +25,8 @@ logger.addHandler(fh)
 class Excel2pd(object):
 
     # 获取数据源地址
-    def __init__(self):
-        self.data_path = conf.get('data_source','path')
-        # self.data_path = conf.get('data_source','test_path')
+    def __init__(self, file_name):
+        self.data_path = os.path.join(conf.get('data_source','path'),file_name+'.xlsx')
 
     # 将Excel文件转化为dataframe,并返回
     def excel2pd(self):
@@ -51,9 +50,9 @@ class Df2excel(object):
         :param file_name: 保存文件名
         :return:
         '''
-        file = os.path.join(conf.get('tmp','path'),file_name+'.xlsx')
+        file_path = os.path.join(conf.get('tmp','path'),file_name+'.xlsx')
         try:
-            self.df.to_excel(file, encoding='utf-8', index=False)
+            self.df.to_excel(file_path, encoding='utf-8', index=False)
         except Exception as e:
             logger.info(u"失败原因：")
             logger.info(e)
@@ -151,7 +150,8 @@ class PosTag(object):
 
 
 if __name__ == '__main__':
-    test_pd = Excel2pd().excel2pd()
+    test_pd = Excel2pd('test').excel2pd()
+    print(test_pd)
     # print(test_pd.ix[:,['AB ']])
     # tmp = Df2excel(test_pd)
     # res = tmp.add_col("tech")
