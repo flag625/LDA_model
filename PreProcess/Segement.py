@@ -65,21 +65,4 @@ class Segement(object):
 if __name__ == '__main__':
     seg = Segement()
     seg.Segemnt('patents_1134')
-    # seg.excel2pd('patents_1134')
-    # seg.excel2pd('test')
-    # print(seg.df)
-    # seg.add_col('tech')
-    # seg.add_col('func')
-    # # print(seg.df)
-    # num = 0
-    # for abstract in seg.df.ix[:,'AB']:
-    #     if not re.search(conf.get('grammer','rejudge'), abstract):
-    #         seg.df['tech'][num] = seg.find(abstract,conf.get('grammer','find_tech_grammer'),1,True)
-    #     else:
-    #         seg.df['tech'][num] = seg.find(abstract,conf.get('grammer','find_tech_grammer'),1)
-    #         seg.df['func'][num] = seg.find(abstract,conf.get('grammer','find_func_grammer'),0)
-    #     print('完成 ： %d' % (num+1))
-    #     num += 1
-    # print('---'*20)
-    # print(seg.df['func'])
-    # seg.pd2excel('test_1')
+
