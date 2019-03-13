@@ -48,8 +48,8 @@ class Segements(object):
 
 if __name__ == '__main__':
     seg = Segements()
-    # seg.excel2pd('patents_1134')
-    seg.excel2pd('test')
+    seg.excel2pd('patents_1134')
+    # seg.excel2pd('test')
     # print(seg.df)
     seg.add_col('tech')
     seg.add_col('func')
