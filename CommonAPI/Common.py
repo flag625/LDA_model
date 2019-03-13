@@ -148,8 +148,8 @@ class PosTag(object):
         '''
         获取目标分块
         :param grammar: 分块语法
-        :param sentence: NLTK tree
-        :return:
+        :param sentence: list of sentance:(tunple of word1(word1, postag), ...)
+        :return: NLTK tree
         '''
         try:
             cp = nltk.RegexpParser(grammar)

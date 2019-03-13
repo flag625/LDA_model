@@ -23,16 +23,22 @@ class Chunking(object):
     def __init__(self):
         self.NounPhrases = []
 
+    def doc_chunking(self, grammer, document):
+        listOfsents = self.preprocess(document)
+        for sent in listOfsents:
+            self.sent_chunking(grammer, sent)
+
     def preprocess(self, document):
         listOfsents = comm.PosTag().preprocess(document)
         return listOfsents
 
-    def chunking(self, grammer, sent):
+    def sent_chunking(self, grammer, sent):
         sentTree = comm.PosTag().chunking(grammer, sent)
         self.traverse(sentTree)
 
     def getNounPhrases(self):
-        return self.NounPhrases
+        res = ', '.join(np for np in self.NounPhrases)
+        return res
 
     def traverse(self, sentTree):
         try:
@@ -76,12 +82,15 @@ if __name__ == '__main__':
        {<NNP>+}
     """
     chunk = Chunking()
-    sentences = chunk.preprocess(doc)
+    # sentences = chunk.preprocess(doc)
     # for sentence in sentences:
     #     print(sentence)
-
-    chunk.chunking(grammer, sentences[1])
-    res = chunk.getNounPhrases()
-    print(res)
+    # chunk.sent_chunking(grammer, sentences[1])
+    # res = chunk.getNounPhrases()
+    # print(res)
     # print(type(res))
     # res.draw()
+
+    chunk.doc_chunking(grammer, doc)
+    res = chunk.getNounPhrases()
+    print(res)
