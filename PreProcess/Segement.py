@@ -16,9 +16,25 @@ formatter = logging.Formatter("%(asctime)s - %(filename)s[line:%(lineno)d] - %(l
 fh.setFormatter(formatter)
 logger.addHandler(fh)
 
-class Segements(object):
+class Segement(object):
     def __init__(self):
         self.df = pd.DataFrame()
+
+    def Segemnt(self, inputFile, outputFile=None):
+        self.excel2pd(inputFile)
+        self.add_col('tech')
+        self.add_col('func')
+        num = 0
+        for abstract in self.df.ix[:, 'AB']:
+            if not re.search(conf.get('grammer', 'rejudge'), abstract):
+                self.df['tech'][num] = self.find(abstract, conf.get('grammer', 'find_tech_grammer'), 1, True)
+            else:
+                self.df['tech'][num] = self.find(abstract, conf.get('grammer', 'find_tech_grammer'), 1)
+                self.df['func'][num] = self.find(abstract, conf.get('grammer', 'find_func_grammer'), 0)
+            print('完成 ： %d' % (num + 1))
+            num += 1
+        if outputFile:
+            self.pd2excel(outputFile)
 
     def excel2pd(self, filename):
         self.df = comm.Excel2pd(filename).excel2pd()
@@ -47,22 +63,23 @@ class Segements(object):
 
 
 if __name__ == '__main__':
-    seg = Segements()
-    seg.excel2pd('patents_1134')
+    seg = Segement()
+    seg.Segemnt('patents_1134')
+    # seg.excel2pd('patents_1134')
     # seg.excel2pd('test')
     # print(seg.df)
-    seg.add_col('tech')
-    seg.add_col('func')
-    # print(seg.df)
-    num = 0
-    for abstract in seg.df.ix[:,'AB']:
-        if not re.search(conf.get('grammer','rejudge'), abstract):
-            seg.df['tech'][num] = seg.find(abstract,conf.get('grammer','find_tech_grammer'),1,True)
-        else:
-            seg.df['tech'][num] = seg.find(abstract,conf.get('grammer','find_tech_grammer'),1)
-            seg.df['func'][num] = seg.find(abstract,conf.get('grammer','find_func_grammer'),0)
-        print('完成 ： %d' % (num+1))
-        num += 1
+    # seg.add_col('tech')
+    # seg.add_col('func')
+    # # print(seg.df)
+    # num = 0
+    # for abstract in seg.df.ix[:,'AB']:
+    #     if not re.search(conf.get('grammer','rejudge'), abstract):
+    #         seg.df['tech'][num] = seg.find(abstract,conf.get('grammer','find_tech_grammer'),1,True)
+    #     else:
+    #         seg.df['tech'][num] = seg.find(abstract,conf.get('grammer','find_tech_grammer'),1)
+    #         seg.df['func'][num] = seg.find(abstract,conf.get('grammer','find_func_grammer'),0)
+    #     print('完成 ： %d' % (num+1))
+    #     num += 1
     # print('---'*20)
     # print(seg.df['func'])
     # seg.pd2excel('test_1')
