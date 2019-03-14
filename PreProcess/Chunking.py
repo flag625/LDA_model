@@ -77,8 +77,9 @@ if __name__ == '__main__':
           "The method can 'dilute' the concentrated burst flows to the wholelocal network to " \
           "eliminate jamming while maintaining the stable local flow rate characteristic. "
 
-    doc2 = "ensuring reusability of protocol related layer furthest, avoiding rehandling development procedure for testing set. " \
-           "The invention possesses high generality, reusability and extensibility. "
+    doc2 = "Method for selecting a super-node in a network node of a peer-to-peer network (all claimed)." \
+           "The implementation of the method selects the super node preferably, when searching the network node or resource, " \
+           "so that network load is equilibrated, and improves efficiency of the selecting node and stability of the network."
 
     grammer = r"""
     NP:{<DT|PP\$>?<JJ>*<NN|NNP>}
@@ -104,6 +105,29 @@ if __name__ == '__main__':
            {<NN><JJ><VBG><NN>}        
         """
 
+    func_term_grammer = r"""
+        NP:{<VBZ><DT><NN>}
+           {<JJ><NN><NN>}
+           {<NN><BEZ><VBN>}
+           {<VBG><DT><NN>}
+           {<VBZ><NN><CC><NN>}
+           {<VBG><JJ><NN|NNS>}
+           {<JJ><NN>}
+           {<NN><NN><RB>}
+           {<RB><CC><RB>}
+           {<VBG><NN><VBG>}
+           {<VBZ><JJ><NN>}
+           {<TO><VB><DT><NN>}
+           {<VBZ><NN><VBG>}
+           {<VBG><JJ><NN>}
+           {<VBN><RB>}
+           {<VBG><DT><NN><RB>}
+           {<NN><RB>}
+           {<NN><BER><VBN>}
+           {<NN><BEZ><VBN>}
+           {<JJR><JJ>}
+        """
+
     tech_np_grammer = r"""
         NP:{<DT|CD|PRP\$>?<JJ|JJR|JJS>*<VBN>*<NN|NNS|NNP|NNPS>+}
            {<NN|NNS|NNP|NNPS>*<VBG>+<NN|NNS|NNP|NNPS>+}
@@ -113,9 +137,9 @@ if __name__ == '__main__':
 
     func_np_grammer = r"""
         NP:{<NN|NNP|NNS|NNPS>+<BEZ|BER><VBN>}
-           {<VBG|VBZ>?<DT|CD>?<JJ|JJR|JJS|>*<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>?<CC>?<NN|NNS|NNP|NNPS>?<VBG>?}
+           {<VBG|VBZ>?<DT|CD>?<JJ|JJR|JJS|>*<NN|NNS|NNP|NNPS>+<JJR|JJS>?<RB|RBR|RBS>?<CC>?<NN|NNS|NNP|NNPS>?<VBG>?}
            {<TO><VB><DT|CD>?<NN|NNS|NNP|NNPS>+}
-           {<VBN>?<RB|RBR|RBS>+<CC>?<RB|RBR|RBS>?}
+           {<VBN>?<JJR|JJS>?<RB|RBR|RBS>+<CC>?<JJR|JJS>?<RB|RBR|RBS>?}
            {<JJ|JJR|JJS>+}
         """
 
@@ -132,7 +156,7 @@ if __name__ == '__main__':
     # print(res2)
 
     chunk3 = Chunking()
-    chunk3.doc_chunking(func_np_grammer, doc2)
+    chunk3.doc_chunking(func_term_grammer, doc2)
     res3 = chunk3.getNounPhrases()
     print(res3)
 
