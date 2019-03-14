@@ -20,11 +20,12 @@ logger.addHandler(fh)
 
 # 提取目标短语块
 class Chunking(object):
-    def __init__(self):
+    def __init__(self, num):
         self.NounPhrases = []
+        self.recordNum = num
 
-    def __del__(self, num):
-        print("第 %s 条记录完成" %num)
+    def __del__(self):
+        print("第 %s 条记录完成" %self.recordNum)
 
     def doc_chunking(self, grammer, document):
         listOfsents = self.preprocess(document)
@@ -148,18 +149,24 @@ if __name__ == '__main__':
 
 
 
-    # chunk1 = Chunking()
+    # chunk1 = Chunking(1)
     # chunk1.doc_chunking(tech_term_grammer, doc)
     # res1 = chunk1.getNounPhrases()
     # print(res1)
     #
-    # chunk2 = Chunking()
+    # chunk2 = Chunking(1)
     # chunk2.doc_chunking(tech_np_grammer, doc)
     # res2 = chunk2.getNounPhrases()
     # print(res2)
 
-    chunk3 = Chunking()
-    chunk3.doc_chunking(func_term_grammer, doc2)
+    chunk3 = Chunking(1)
+    chunk3.doc_chunking(func_np_grammer, doc2)
     res3 = chunk3.getNounPhrases()
     print(res3)
+    del chunk3
+
+    chunk4 = Chunking(1)
+    chunk4.doc_chunking(func_term_grammer, doc2)
+    res4 = chunk4.getNounPhrases()
+    print(res4)
 
