@@ -19,13 +19,7 @@ tech_np_grammer = r"""
        {<RB|RBR|RBS>+<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>*<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>+}
     """
 
-func_np_grammer = r"""
-        NP:{<NN|NNP|NNS|NNPS>+<BEZ|BER><VBN>}
-           {<VBG|VBZ>?<DT|CD>?<JJ|JJR|JJS|>*<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>?<CC>?<NN|NNS|NNP|NNPS>?<VBG>?}
-           {<TO><VB><DT|CD>?<NN|NNS|NNP|NNPS>+}
-           {<VBN>?<RB|RBR|RBS>+<CC>?<RB|RBR|RBS>?}
-           {<JJ|JJR|JJS>+}
-        """
+
 
 func_term_grammer = r"""
     NP:{<VBZ><DT><NN>}
@@ -50,6 +44,21 @@ func_term_grammer = r"""
        {<JJR><JJ>}
     """
 
+# func_np_grammer2 = r"""
+#             NP:{<VBZ|VBG><DT|CD>?<JJ|JJR|JJS>*<NN|NNS>}
+#                {<VBZ|VBG><DT|CD>?<JJ|JJR|JJS>*<NN|NNS>+<CC><NN|NNS>}
+#                {<JJ|JJR|JJS>+<NN|NNS>+}
+#                {<JJ|JJR|JJS>*<CC>?<JJ|JJR|JJS>+}
+#                {<VBZ|VBG><NN|NNS><VBG>}
+#                {<VBN><JJR|JJS>?<RB|RBR|RBS>}
+#                {<VBG><DT|CD>?<NN|NNS><JJR|JJS>?<RB|RBR|RBS>}
+#                {<RB|RBR|RBS>*<CC>?<JJR|JJS>?<RB|RBR|RBS>+}
+#                {<TO>?<VB><DT|CD>?<NN|NNS>}
+#                {<NN|NNS>+<BEZ|BER><VBN>}
+#                {<NN|NNS>*<JJR|JJS>?<RB|RBR|RBS>}
+#                {<NN|NNS>+<IN><NN|NNS>+}
+#             """
+
 # tech_term_grammer = r"""
 #     NP:{<NN>}
 #        {<JJ><NN|NNS>}
@@ -71,14 +80,22 @@ func_term_grammer = r"""
 #     """
 
 # 简单的评估和基准
-cp = nltk.RegexpParser(r"""
-    NP: {<DT|PRP\$>?<JJ>*<NN>}
-        {<NNP|NN>+}
-""")
-test_sents = conll2000.chunked_sents('train.txt', chunk_types=['NP'])
-print(cp.evaluate(test_sents))
+# cp = nltk.RegexpParser(r"""
+#     NP: {<DT|PRP\$>?<JJ>*<NN>}
+#         {<NNP|NN>+}
+# """)
+# test_sents = conll2000.chunked_sents('train.txt', chunk_types=['NP'])
+# print(cp.evaluate(test_sents))
 
 # grammer = r"NP: {<[CDJNP].*>+}"
-grammer = tech_np_grammer
+# grammer = tech_np_grammer
+# cp = nltk.RegexpParser(grammer)
+# print(cp.evaluate(test_sents))
+
+doc2 = "so that network load is equilibrated, and improves efficiency of the selecting node and stability of the network."
+sent = nltk.word_tokenize(doc2)
+sent = nltk.pos_tag(sent)
+grammer = r"NP: {<NN|NNS>+<IN><CD|CC>?<NN|NNS>+}"
 cp = nltk.RegexpParser(grammer)
-print(cp.evaluate(test_sents))
+sentTree = cp.parse(sent)
+print(sentTree)
