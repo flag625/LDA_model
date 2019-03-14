@@ -72,7 +72,7 @@ if __name__ == '__main__':
           "and each of the boundary gateway label swap router DLSR of local network " \
           "and to disperse the burst mobile IP data flows onto the LSP's so that the burst mobile IP data flows shunt " \
           "in the local network can influx the boundary gateway label swap router DLSR. " \
-          "The mobile IP burst flow rate remitting and regulatingmethod includes two steps: " \
+          "The mobile IP burst flow rate remitting and regulating method includes two steps: " \
           "seeking and establishing several LSP's and distributing the available bandwidth among the mobile IP users. " \
           "The method can 'dilute' the concentrated burst flows to the wholelocal network to " \
           "eliminate jamming while maintaining the stable local flow rate characteristic. "
@@ -81,7 +81,35 @@ if __name__ == '__main__':
     NP:{<DT|PP\$>?<JJ>*<NN|NNP>}
        {<NNP>+}
     """
-    chunk = Chunking()
+    tech_term_grammer = r"""
+        NP:{<NN>}
+           {<JJ><NN|NNS>}
+           {<VBG><NN>}
+           {<NN><NN>}
+           {<NN><NN><NN>}
+           {<JJ><NN><NN>}
+           {<JJ><JJ><NN>}
+           {<JJ><VBG><NN>}
+           {<JJR><NN><NN>}
+           {<RB><NN><NN>}
+           {<NN><VBG><NN>}
+           {<VBN><NN><NN>}
+           {<VBG><NN><NN>}
+           {<JJ><JJ><NN><NN>}
+           {<RB><JJ><NN><JJ><NN>}
+           {<JJ><NN><NN><NN>}
+           {<NN><JJ><VBG><NN>}        
+        """
+
+    tech_np_grammer = r"""
+        NP:{<DT|CD|PRP\$>?<JJ|JJR|JJS>*<VBN>*<NN|NNS|NNP|NNPS>+}
+           {<NN|NNS|NNP|NNPS>*<VBG>+<NN|NNS|NNP|NNPS>+}
+           {<NN|NNS|NNP|NNPS>*<JJ|JJR|JJS>*<VBN>+<NN|NNS|NNP|NNPS>+}
+           {<RB|RBR|RBS>+<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>*<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>+}
+        """
+
+
+    chunk1 = Chunking()
     # sentences = chunk.preprocess(doc)
     # for sentence in sentences:
     #     print(sentence)
@@ -91,6 +119,11 @@ if __name__ == '__main__':
     # print(type(res))
     # res.draw()
 
-    chunk.doc_chunking(grammer, doc)
-    res = chunk.getNounPhrases()
+    chunk1.doc_chunking(tech_term_grammer, doc)
+    res = chunk1.getNounPhrases()
     print(res)
+
+    chunk2 = Chunking()
+    chunk2.doc_chunking(tech_np_grammer, doc)
+    res2 = chunk2.getNounPhrases()
+    print(res2)

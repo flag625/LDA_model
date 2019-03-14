@@ -19,6 +19,20 @@ tech_np_grammer = r"""
        {<RB|RBR|RBS>+<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>*<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>+}
     """
 
+func_np_grammer = r"""
+    NP:{<VBZ|VBG><DT|CD>?<NN|NNS|NNP|NNPS>+<VBG>?}
+       {<JJ><NN|NNS|NNP|NNPS>+}
+       {<NN|NNP|NNS|NNPS>+<BEZ|BER><VBN>}
+       {<VBZ><NN|NNS|NNP|NNPS><CC><NN|NNS|NNP|NNPS>}
+       {<VBG|VBZ><JJ|JJR|JJS>+<NN|NNS|NNP|NNPS>+}
+       {<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>}
+       {<RB|RBR|RBS><CC><RB|RBR|RBS>}
+       {<TO><VB><DT|CD>?<NN|NNS|NNP|NNPS>+}
+       {<VBN><RB|RBR|RBS>}
+       {<VBG>?<DT|CD>?<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>}
+       {<JJ|JJR|JJS>+}
+    """
+
 func_term_grammer = r"""
     NP:{<VBZ><DT><NN>}
        {<JJ><NN><NN>}
@@ -42,25 +56,25 @@ func_term_grammer = r"""
        {<JJR><JJ>}
     """
 
-tech_term_grammer = r"""
-    NP:{<NN>}
-       {<JJ><NN|NNS>}
-       {<VBG><NN>}
-       {<NN><NN>}
-       {<NN><NN><NN>}
-       {<JJ><NN><NN>}
-       {<JJ><JJ><NN>}
-       {<JJ><VBG><NN>}
-       {<JJR><NN><NN>}
-       {<RB><NN><NN>}
-       {<NN><VBG><NN>}
-       {<VBN><NN><NN>}
-       {<VBG><NN><NN>}
-       {<JJ><JJ><NN><NN>}
-       {<RB><JJ><NN><JJ><NN>}
-       {<JJ><NN><NN><NN>}
-       {<NN><JJ><VBG><NN>}        
-    """
+# tech_term_grammer = r"""
+#     NP:{<NN>}
+#        {<JJ><NN|NNS>}
+#        {<VBG><NN>}
+#        {<NN><NN>}
+#        {<NN><NN><NN>}
+#        {<JJ><NN><NN>}
+#        {<JJ><JJ><NN>}
+#        {<JJ><VBG><NN>}
+#        {<JJR><NN><NN>}
+#        {<RB><NN><NN>}
+#        {<NN><VBG><NN>}
+#        {<VBN><NN><NN>}
+#        {<VBG><NN><NN>}
+#        {<JJ><JJ><NN><NN>}
+#        {<RB><JJ><NN><JJ><NN>}
+#        {<JJ><NN><NN><NN>}
+#        {<NN><JJ><VBG><NN>}
+#     """
 
 # 简单的评估和基准
 cp = nltk.RegexpParser(r"""
