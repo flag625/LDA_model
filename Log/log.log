@@ -36,3 +36,7 @@
 2019-03-13 10:45:47,867 - Common.py[line:36] - INFO: 失败原因：
 2019-03-13 10:45:47,899 - Common.py[line:37] - INFO: [Errno 2] No such file or directory: 'E:/python/LDA_model/Data\\test.xlsx.xlsx'
 2019-03-13 10:45:47,899 - Common.py[line:37] - INFO: [Errno 2] No such file or directory: 'E:/python/LDA_model/Data\\test.xlsx.xlsx'
+2019-03-14 16:31:09,861 - Common.py[line:158] - INFO: 失败原因：
+2019-03-14 16:31:09,861 - Common.py[line:158] - INFO: 失败原因：
+2019-03-14 16:31:09,942 - Common.py[line:159] - INFO: Illegal chunk pattern: {<VBG|VBZ>?<DT|CD>?<JJ|JJR|JJS|>*<NN|NNS|NNP|NNPS>+<<CC><NN|NNS|NNP|NNPS>>?<VBG>?}
+2019-03-14 16:31:09,942 - Common.py[line:159] - INFO: Illegal chunk pattern: {<VBG|VBZ>?<DT|CD>?<JJ|JJR|JJS|>*<NN|NNS|NNP|NNPS>+<<CC><NN|NNS|NNP|NNPS>>?<VBG>?}

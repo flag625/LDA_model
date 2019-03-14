@@ -112,16 +112,10 @@ if __name__ == '__main__':
         """
 
     func_np_grammer = r"""
-        NP:{<VBZ|VBG><DT|CD>?<NN|NNS|NNP|NNPS>+<VBG>?}
-           {<JJ><NN|NNS|NNP|NNPS>+}
-           {<NN|NNP|NNS|NNPS>+<BEZ|BER><VBN>}
-           {<VBZ><NN|NNS|NNP|NNPS><CC><NN|NNS|NNP|NNPS>}
-           {<VBG|VBZ><JJ|JJR|JJS>+<NN|NNS|NNP|NNPS>+}
-           {<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>}
-           {<RB|RBR|RBS><CC><RB|RBR|RBS>}
+        NP:{<NN|NNP|NNS|NNPS>+<BEZ|BER><VBN>}
+           {<VBG|VBZ>?<DT|CD>?<JJ|JJR|JJS|>*<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>?<CC>?<NN|NNS|NNP|NNPS>?<VBG>?}
            {<TO><VB><DT|CD>?<NN|NNS|NNP|NNPS>+}
-           {<VBN><RB|RBR|RBS>}
-           {<VBG>?<DT|CD>?<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>}
+           {<VBN>?<RB|RBR|RBS>+<CC>?<RB|RBR|RBS>?}
            {<JJ|JJR|JJS>+}
         """
 

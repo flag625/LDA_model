@@ -20,19 +20,12 @@ tech_np_grammer = r"""
     """
 
 func_np_grammer = r"""
-    NP:{<VBZ|VBG><DT|CD>?<NN|NNS|NNP|NNPS>+<VBG>?}
-       {<JJ|JJR|JJS>+<NN|NNS|NNP|NNPS>+}
-       {<NN|NNP|NNS|NNPS>+<BEZ|BER><VBN>}
-       {<VBZ><NN|NNS|NNP|NNPS><CC><NN|NNS|NNP|NNPS>}
-       {<VBG|VBZ><JJ|JJR|JJS>+<NN|NNS|NNP|NNPS>+}
-       {<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>}
-       {<RB|RBR|RBS><CC><RB|RBR|RBS>}
-       {<TO><VB><DT|CD>?<NN|NNS|NNP|NNPS>+}
-       {<VBN><RB|RBR|RBS>}
-       {<VBG>?<DT|CD>?<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>}
-       {<JJ|JJR|JJS>+}
-       {<<NN|NNS|NNP|NNPS>+>}
-    """
+        NP:{<NN|NNP|NNS|NNPS>+<BEZ|BER><VBN>}
+           {<VBG|VBZ>?<DT|CD>?<JJ|JJR|JJS|>*<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>?<CC>?<NN|NNS|NNP|NNPS>?<VBG>?}
+           {<TO><VB><DT|CD>?<NN|NNS|NNP|NNPS>+}
+           {<VBN>?<RB|RBR|RBS>+<CC>?<RB|RBR|RBS>?}
+           {<JJ|JJR|JJS>+}
+        """
 
 func_term_grammer = r"""
     NP:{<VBZ><DT><NN>}
