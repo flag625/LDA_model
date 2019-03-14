@@ -23,6 +23,9 @@ class Chunking(object):
     def __init__(self):
         self.NounPhrases = []
 
+    def __del__(self, num):
+        print("第 %s 条记录完成" %num)
+
     def doc_chunking(self, grammer, document):
         listOfsents = self.preprocess(document)
         for sent in listOfsents:
