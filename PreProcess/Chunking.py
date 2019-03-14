@@ -159,7 +159,7 @@ if __name__ == '__main__':
                {<TO>?<VB><DT|CD>?<NN|NNS>}
                {<NN|NNS>+<VBZ|VBP><VBN>}
                {<NN|NNS>*<JJR|JJS>?<RB|RBR|RBS>}
-               {<NN|NNS>+<IN><DT|CD>?<NN|NNS>+}     
+               {<NN|NNS><IN><DT|CD>?<NN|NNS>+}     
             """
 
 
