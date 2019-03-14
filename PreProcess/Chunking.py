@@ -77,6 +77,9 @@ if __name__ == '__main__':
           "The method can 'dilute' the concentrated burst flows to the wholelocal network to " \
           "eliminate jamming while maintaining the stable local flow rate characteristic. "
 
+    doc2 = "ensuring reusability of protocol related layer furthest, avoiding rehandling development procedure for testing set. " \
+           "The invention possesses high generality, reusability and extensibility. "
+
     grammer = r"""
     NP:{<DT|PP\$>?<JJ>*<NN|NNP>}
        {<NNP>+}
@@ -108,22 +111,34 @@ if __name__ == '__main__':
            {<RB|RBR|RBS>+<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>*<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>+}
         """
 
+    func_np_grammer = r"""
+        NP:{<VBZ|VBG><DT|CD>?<NN|NNS|NNP|NNPS>+<VBG>?}
+           {<JJ><NN|NNS|NNP|NNPS>+}
+           {<NN|NNP|NNS|NNPS>+<BEZ|BER><VBN>}
+           {<VBZ><NN|NNS|NNP|NNPS><CC><NN|NNS|NNP|NNPS>}
+           {<VBG|VBZ><JJ|JJR|JJS>+<NN|NNS|NNP|NNPS>+}
+           {<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>}
+           {<RB|RBR|RBS><CC><RB|RBR|RBS>}
+           {<TO><VB><DT|CD>?<NN|NNS|NNP|NNPS>+}
+           {<VBN><RB|RBR|RBS>}
+           {<VBG>?<DT|CD>?<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>}
+           {<JJ|JJR|JJS>+}
+        """
 
-    chunk1 = Chunking()
-    # sentences = chunk.preprocess(doc)
-    # for sentence in sentences:
-    #     print(sentence)
-    # chunk.sent_chunking(grammer, sentences[1])
-    # res = chunk.getNounPhrases()
-    # print(res)
-    # print(type(res))
-    # res.draw()
 
-    chunk1.doc_chunking(tech_term_grammer, doc)
-    res = chunk1.getNounPhrases()
-    print(res)
 
-    chunk2 = Chunking()
-    chunk2.doc_chunking(tech_np_grammer, doc)
-    res2 = chunk2.getNounPhrases()
-    print(res2)
+    # chunk1 = Chunking()
+    # chunk1.doc_chunking(tech_term_grammer, doc)
+    # res1 = chunk1.getNounPhrases()
+    # print(res1)
+    #
+    # chunk2 = Chunking()
+    # chunk2.doc_chunking(tech_np_grammer, doc)
+    # res2 = chunk2.getNounPhrases()
+    # print(res2)
+
+    chunk3 = Chunking()
+    chunk3.doc_chunking(func_np_grammer, doc2)
+    res3 = chunk3.getNounPhrases()
+    print(res3)
+

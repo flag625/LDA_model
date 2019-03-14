@@ -21,7 +21,7 @@ tech_np_grammer = r"""
 
 func_np_grammer = r"""
     NP:{<VBZ|VBG><DT|CD>?<NN|NNS|NNP|NNPS>+<VBG>?}
-       {<JJ><NN|NNS|NNP|NNPS>+}
+       {<JJ|JJR|JJS>+<NN|NNS|NNP|NNPS>+}
        {<NN|NNP|NNS|NNPS>+<BEZ|BER><VBN>}
        {<VBZ><NN|NNS|NNP|NNPS><CC><NN|NNS|NNP|NNPS>}
        {<VBG|VBZ><JJ|JJR|JJS>+<NN|NNS|NNP|NNPS>+}
@@ -31,6 +31,7 @@ func_np_grammer = r"""
        {<VBN><RB|RBR|RBS>}
        {<VBG>?<DT|CD>?<NN|NNS|NNP|NNPS>+<RB|RBR|RBS>}
        {<JJ|JJR|JJS>+}
+       {<<NN|NNS|NNP|NNPS>+>}
     """
 
 func_term_grammer = r"""
