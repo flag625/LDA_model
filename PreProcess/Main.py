@@ -30,11 +30,18 @@ class PrePrecess(object):
         return self.df
 
     def main(self,segTmpFile=None):
+        '''
+        预处理主要步骤
+        :param segTmpFile: 分段处理后保存的过渡文件名
+        :return:
+        '''
+        # 分段
         Seg = seg.Segement()
         print("开始技术词和功效词分段：")
         Seg.Segemnt(self.inputFile, segTmpFile)
         print("----"*20)
         self.df = Seg.getDF()
+        # 分块
         print("开始技术词分块：")
         self.chunk()
         print("----"*20)
@@ -44,6 +51,11 @@ class PrePrecess(object):
         self.pd2excel('chunk_test')
 
     def chunk(self, tech=1):
+        '''
+        技术词和功效词分块
+        :param tech: 默认1，选择技术词分块；0，选择功效词分块
+        :return:
+        '''
         num = 0
         grammer = 'tech'
         if not tech:
