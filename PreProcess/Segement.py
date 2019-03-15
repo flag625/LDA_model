@@ -20,6 +20,9 @@ class Segement(object):
     def __init__(self):
         self.df = pd.DataFrame()
 
+    def getDF(self):
+        return self.df
+
     def Segemnt(self, inputFile, outputFile=None):
         self.excel2pd(inputFile)
         self.add_col('tech')
@@ -40,7 +43,7 @@ class Segement(object):
         self.df = comm.Excel2pd(filename).excel2pd()
 
     def pd2excel(self, filename):
-        comm.Df2excel(self.df).df2excel(filename)
+        comm.Df2excel(self.df).df2excel(filename, 'tmp')
 
     def add_col(self, colname):
         '''

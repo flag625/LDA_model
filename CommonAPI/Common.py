@@ -44,13 +44,14 @@ class Df2excel(object):
     def __init__(self, df):
         self.df = df
 
-    def df2excel(self, file_name):
+    def df2excel(self, file_name, pathChose='result',):
         '''
         dataframe转换为Excel, 保存在tmp文件夹
         :param file_name: 保存文件名
+        :param pathChose: 保存路径选择，默认'result' Result文件夹，可选'tmp' tmp文件夹
         :return:
         '''
-        file_path = os.path.join(conf.get('tmp','path'),file_name+'.xlsx')
+        file_path = os.path.join(conf.get(pathChose,'path'),file_name+'.xlsx')
         try:
             self.df.to_excel(file_path, encoding='utf-8', index=False)
         except Exception as e:
