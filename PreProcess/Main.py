@@ -5,6 +5,7 @@ import pandas as pd
 from CommonAPI import Common as comm
 from PreProcess import Segement as seg
 from PreProcess import Chunking as chu
+from PreProcess import NlpPreProcess as nlp
 
 import logging.config
 import configparser
@@ -48,6 +49,8 @@ class PrePrecess(object):
         print("开始功效词分块：")
         self.chunk(0)
         print("----" * 20)
+        self.mergeTechFunc()
+        nlp.NlpPreProcess().preprocessFile(dataframe=self.df)
         self.pd2excel('chunk_test')
 
     def chunk(self, tech=1):
@@ -84,6 +87,19 @@ class PrePrecess(object):
 
     def pd2excel(self, filename):
         comm.Df2excel(self.df).df2excel(filename, 'tmp')
+
+    def mergeTechFunc(self):
+        try:
+            self.add_col('tech_func')
+            for num in range(len(self.df)):
+                if self.df['func'][num]:
+                    self.df['tech_func'][num] = self.df['tech'][num] + ' ' + self.df['func'][num]
+                else:
+                    self.df['tech_func'][num] = self.df['tech'][num]
+        except Exception as e:
+            logger.info(u"失败原因：")
+            logger.info(e)
+            raise e
 
 
 if __name__ == '__main__':

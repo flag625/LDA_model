@@ -40,3 +40,73 @@
 2019-03-14 16:31:09,861 - Common.py[line:158] - INFO: 失败原因：
 2019-03-14 16:31:09,942 - Common.py[line:159] - INFO: Illegal chunk pattern: {<VBG|VBZ>?<DT|CD>?<JJ|JJR|JJS|>*<NN|NNS|NNP|NNPS>+<<CC><NN|NNS|NNP|NNPS>>?<VBG>?}
 2019-03-14 16:31:09,942 - Common.py[line:159] - INFO: Illegal chunk pattern: {<VBG|VBZ>?<DT|CD>?<JJ|JJR|JJS|>*<NN|NNS|NNP|NNPS>+<<CC><NN|NNS|NNP|NNPS>>?<VBG>?}
+2019-03-15 15:03:10,873 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:03:10,873 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:03:10,873 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:03:10,873 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:03:10,873 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:03:10,904 - Main.py[line:101] - INFO: 'numpy.int32' object is not callable
+2019-03-15 15:03:10,904 - Main.py[line:101] - INFO: 'numpy.int32' object is not callable
+2019-03-15 15:03:10,904 - Main.py[line:101] - INFO: 'numpy.int32' object is not callable
+2019-03-15 15:03:10,904 - Main.py[line:101] - INFO: 'numpy.int32' object is not callable
+2019-03-15 15:03:10,904 - Main.py[line:101] - INFO: 'numpy.int32' object is not callable
+2019-03-15 15:08:10,733 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:08:10,733 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:08:10,733 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:08:10,733 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:08:10,733 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:08:10,733 - Main.py[line:101] - INFO: 'int' object is not iterable
+2019-03-15 15:08:10,733 - Main.py[line:101] - INFO: 'int' object is not iterable
+2019-03-15 15:08:10,733 - Main.py[line:101] - INFO: 'int' object is not iterable
+2019-03-15 15:08:10,733 - Main.py[line:101] - INFO: 'int' object is not iterable
+2019-03-15 15:08:10,733 - Main.py[line:101] - INFO: 'int' object is not iterable
+2019-03-15 15:09:04,636 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:09:04,636 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:09:04,636 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:09:04,636 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:09:04,636 - Main.py[line:100] - INFO: 失败原因：
+2019-03-15 15:09:04,636 - Main.py[line:101] - INFO: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:09:04,636 - Main.py[line:101] - INFO: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:09:04,636 - Main.py[line:101] - INFO: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:09:04,636 - Main.py[line:101] - INFO: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:09:04,636 - Main.py[line:101] - INFO: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:22:41,879 - NlpPreProcess.py[line:56] - INFO: 失败原因：
+2019-03-15 15:22:41,879 - NlpPreProcess.py[line:56] - INFO: 失败原因：
+2019-03-15 15:22:41,879 - NlpPreProcess.py[line:56] - INFO: 失败原因：
+2019-03-15 15:22:41,879 - NlpPreProcess.py[line:56] - INFO: 失败原因：
+2019-03-15 15:22:41,879 - NlpPreProcess.py[line:56] - INFO: 失败原因：
+2019-03-15 15:22:41,879 - NlpPreProcess.py[line:57] - INFO: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:22:41,879 - NlpPreProcess.py[line:57] - INFO: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:22:41,879 - NlpPreProcess.py[line:57] - INFO: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:22:41,879 - NlpPreProcess.py[line:57] - INFO: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:22:41,879 - NlpPreProcess.py[line:57] - INFO: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:24:06,386 - NlpPreProcess.py[line:56] - INFO: 失败原因：
+2019-03-15 15:24:06,386 - NlpPreProcess.py[line:56] - INFO: 失败原因：
+2019-03-15 15:24:06,386 - NlpPreProcess.py[line:56] - INFO: 失败原因：
+2019-03-15 15:24:06,386 - NlpPreProcess.py[line:56] - INFO: 失败原因：
+2019-03-15 15:24:06,386 - NlpPreProcess.py[line:56] - INFO: 失败原因：
+2019-03-15 15:24:06,386 - NlpPreProcess.py[line:57] - INFO: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:24:06,386 - NlpPreProcess.py[line:57] - INFO: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:24:06,386 - NlpPreProcess.py[line:57] - INFO: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:24:06,386 - NlpPreProcess.py[line:57] - INFO: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:24:06,386 - NlpPreProcess.py[line:57] - INFO: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2019-03-15 15:24:43,289 - NlpPreProcess.py[line:86] - INFO: 失败原因：
+2019-03-15 15:24:43,289 - NlpPreProcess.py[line:86] - INFO: 失败原因：
+2019-03-15 15:24:43,289 - NlpPreProcess.py[line:86] - INFO: 失败原因：
+2019-03-15 15:24:43,289 - NlpPreProcess.py[line:86] - INFO: 失败原因：
+2019-03-15 15:24:43,289 - NlpPreProcess.py[line:86] - INFO: 失败原因：
+2019-03-15 15:24:43,289 - NlpPreProcess.py[line:87] - INFO: 'NlpPreProcess' object has no attribute 'stoplist'
+2019-03-15 15:24:43,289 - NlpPreProcess.py[line:87] - INFO: 'NlpPreProcess' object has no attribute 'stoplist'
+2019-03-15 15:24:43,289 - NlpPreProcess.py[line:87] - INFO: 'NlpPreProcess' object has no attribute 'stoplist'
+2019-03-15 15:24:43,289 - NlpPreProcess.py[line:87] - INFO: 'NlpPreProcess' object has no attribute 'stoplist'
+2019-03-15 15:24:43,289 - NlpPreProcess.py[line:87] - INFO: 'NlpPreProcess' object has no attribute 'stoplist'
+2019-03-15 15:26:00,425 - NlpPreProcess.py[line:86] - INFO: 失败原因：
+2019-03-15 15:26:00,425 - NlpPreProcess.py[line:86] - INFO: 失败原因：
+2019-03-15 15:26:00,425 - NlpPreProcess.py[line:86] - INFO: 失败原因：
+2019-03-15 15:26:00,425 - NlpPreProcess.py[line:86] - INFO: 失败原因：
+2019-03-15 15:26:00,425 - NlpPreProcess.py[line:86] - INFO: 失败原因：
+2019-03-15 15:26:00,425 - NlpPreProcess.py[line:87] - INFO: dictionary update sequence element #0 has length 1; 2 is required
+2019-03-15 15:26:00,425 - NlpPreProcess.py[line:87] - INFO: dictionary update sequence element #0 has length 1; 2 is required
+2019-03-15 15:26:00,425 - NlpPreProcess.py[line:87] - INFO: dictionary update sequence element #0 has length 1; 2 is required
+2019-03-15 15:26:00,425 - NlpPreProcess.py[line:87] - INFO: dictionary update sequence element #0 has length 1; 2 is required
+2019-03-15 15:26:00,425 - NlpPreProcess.py[line:87] - INFO: dictionary update sequence element #0 has length 1; 2 is required
