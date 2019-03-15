@@ -69,7 +69,7 @@ class Chunking(object):
 
 
 if __name__ == '__main__':
-    doc = "The mobile IP burst flow rate remitting and regulating method is to " \
+    doc1 = "The mobile IP burst flow rate remitting and regulating method is to " \
           "establish multiple label swap paths LSP's by " \
           "utilizing the bandwidth the links of all the reachable paths in local network provide between " \
           "the label edge router SLER for the mobile node MN to access to the local network " \
@@ -132,11 +132,21 @@ if __name__ == '__main__':
            {<JJR><JJ>}
         """
 
-    tech_np_grammer = r"""
+    tech_np_grammer1 = r"""
         NP:{<DT|CD|PRP\$>?<JJ|JJR|JJS>*<VBN>*<NN|NNS|NNP|NNPS>+}
            {<NN|NNS|NNP|NNPS>*<VBG>+<NN|NNS|NNP|NNPS>+}
            {<NN|NNS|NNP|NNPS>*<JJ|JJR|JJS>*<VBN>+<NN|NNS|NNP|NNPS>+}
            {<RB|RBR|RBS>+<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>*<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>+}
+        """
+
+    tech_np_grammer2 = r"""
+        NP:{<DT|CD|PRP\$>?<NN|NNS|NNP|NNPS>+<POS>?<NN|NNS|NNP|NNPS>*}
+           {<NN|NNS|NNP|NNPS>*<VBG><NN|NNS|NNP|NNPS>+}
+           {<NN|NNS|NNP|NNPS>+<JJ|JJR|JJS>+<VBG><NN|NNS|NNP|NNPS>+}
+           {<VBN><NN|NNS|NNP|NNPS>+}
+           {<JJ|JJR|JJS>+<VBG>?<NN|NNS|NNP|NNPS>+}
+           {<JJR|JJS>?<RB|RBR|RBS><NN|NNS|NNP|NNPS>+}
+           {<RB|RBR|RBS><JJ|JJR|JJS>+<NN|NNS|NNP|NNPS>+<JJ|JJR|JJS>+<NN|NNS|NNP|NNPS>+}
         """
 
     func_np_grammer1 = r"""
@@ -164,25 +174,27 @@ if __name__ == '__main__':
 
 
 
-    # chunk1 = Chunking(1)
-    # chunk1.doc_chunking(tech_term_grammer, doc)
-    # res1 = chunk1.getNounPhrases()
-    # print(res1)
-    #
-    # chunk2 = Chunking(1)
-    # chunk2.doc_chunking(tech_np_grammer, doc)
-    # res2 = chunk2.getNounPhrases()
-    # print(res2)
+    chunk1 = Chunking(1)
+    chunk1.doc_chunking(tech_np_grammer1, doc1)
+    res1 = chunk1.getNounPhrases()
+    print(res1)
+    del chunk1
 
-    chunk3 = Chunking(1)
-    chunk3.doc_chunking(func_np_grammer1, doc2)
-    res3 = chunk3.getNounPhrases()
-    print(res3)
-    del chunk3
+    chunk2 = Chunking(1)
+    chunk2.doc_chunking(tech_np_grammer2, doc1)
+    res2 = chunk2.getNounPhrases()
+    print(res2)
+    del chunk2
 
-    chunk4 = Chunking(1)
-    chunk4.doc_chunking(func_np_grammer2, doc2)
-    res4 = chunk4.getNounPhrases()
-    print(res4)
-    del chunk4
+    # chunk3 = Chunking(1)
+    # chunk3.doc_chunking(func_np_grammer1, doc2)
+    # res3 = chunk3.getNounPhrases()
+    # print(res3)
+    # del chunk3
+
+    # chunk4 = Chunking(1)
+    # chunk4.doc_chunking(func_np_grammer2, doc2)
+    # res4 = chunk4.getNounPhrases()
+    # print(res4)
+    # del chunk4
 
