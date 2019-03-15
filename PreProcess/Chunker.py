@@ -3,6 +3,10 @@
 
 import nltk
 from nltk.corpus import conll2000
+import configparser
+
+conf = configparser.ConfigParser()
+conf.read("../CommonAPI/comm.conf")
 
 # print(conll2000.chunked_sents('train.txt')[99])
 # print(conll2000.chunked_sents('train.txt', chunk_types=['NP'])[99])
@@ -101,10 +105,10 @@ func_term_grammer = r"""
 # cp = nltk.RegexpParser(grammer)
 # print(cp.evaluate(test_sents))
 
-doc2 = "so that network load is equilibrated, and improves efficiency of the selecting node and stability of the network."
+doc2 = "my cat"
 sent = nltk.word_tokenize(doc2)
 sent = nltk.pos_tag(sent)
-grammer = r"NP: {<NN|NNS>+<IN><CD|CC>?<NN|NNS>+}"
+grammer = conf.get('grammer', 'tech_np_grammer')
 cp = nltk.RegexpParser(grammer)
 sentTree = cp.parse(sent)
 print(sentTree)

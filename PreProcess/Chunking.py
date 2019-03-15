@@ -133,14 +133,14 @@ if __name__ == '__main__':
         """
 
     tech_np_grammer1 = r"""
-        NP:{<DT|CD|PRP\$>?<JJ|JJR|JJS>*<VBN>*<NN|NNS|NNP|NNPS>+}
+        NP:{<DT|CD|PRP$>?<JJ|JJR|JJS>*<VBN>*<NN|NNS|NNP|NNPS>+}
            {<NN|NNS|NNP|NNPS>*<VBG>+<NN|NNS|NNP|NNPS>+}
            {<NN|NNS|NNP|NNPS>*<JJ|JJR|JJS>*<VBN>+<NN|NNS|NNP|NNPS>+}
            {<RB|RBR|RBS>+<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>*<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>+}
         """
 
     tech_np_grammer2 = r"""
-        NP:{<DT|CD|PRP\$>?<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>+<POS>?<NN|NNS|NNP|NNPS>*}
+        NP:{<DT|CD|PRP$>?<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>+<POS>?<NN|NNS|NNP|NNPS>*}
            {<NN|NNS|NNP|NNPS>*<VBG><NN|NNS|NNP|NNPS>+}
            {<NN|NNS|NNP|NNPS>+<JJ|JJR|JJS>+<VBG><NN|NNS|NNP|NNPS>+}
            {<JJ|JJR|JJS>+<VBG><NN|NNS|NNP|NNPS>+}
@@ -172,16 +172,14 @@ if __name__ == '__main__':
                {<NN|NNS><IN><DT|CD>?<NN|NNS>+}     
             """
 
-
-
-    chunk1 = Chunking(1)
-    chunk1.doc_chunking(tech_np_grammer1, doc1)
-    res1 = chunk1.getNounPhrases()
-    print(res1)
-    del chunk1
+    # chunk1 = Chunking(1)
+    # chunk1.doc_chunking(tech_np_grammer1, doc1)
+    # res1 = chunk1.getNounPhrases()
+    # print(res1)
+    # del chunk1
 
     chunk2 = Chunking(1)
-    chunk2.doc_chunking(tech_np_grammer2, doc1)
+    chunk2.doc_chunking(conf.get('grammer', 'tech_np_grammer'), doc1)
     res2 = chunk2.getNounPhrases()
     print(res2)
     del chunk2
@@ -192,9 +190,9 @@ if __name__ == '__main__':
     # print(res3)
     # del chunk3
 
-    # chunk4 = Chunking(1)
-    # chunk4.doc_chunking(func_np_grammer2, doc2)
-    # res4 = chunk4.getNounPhrases()
-    # print(res4)
-    # del chunk4
+    chunk4 = Chunking(1)
+    chunk4.doc_chunking(conf.get('grammer', 'func_np_grammer'), doc2)
+    res4 = chunk4.getNounPhrases()
+    print(res4)
+    del chunk4
 
