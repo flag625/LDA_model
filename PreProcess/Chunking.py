@@ -140,11 +140,11 @@ if __name__ == '__main__':
         """
 
     tech_np_grammer2 = r"""
-        NP:{<DT|CD|PRP\$>?<NN|NNS|NNP|NNPS>+<POS>?<NN|NNS|NNP|NNPS>*}
+        NP:{<DT|CD|PRP\$>?<JJ|JJR|JJS>*<NN|NNS|NNP|NNPS>+<POS>?<NN|NNS|NNP|NNPS>*}
            {<NN|NNS|NNP|NNPS>*<VBG><NN|NNS|NNP|NNPS>+}
            {<NN|NNS|NNP|NNPS>+<JJ|JJR|JJS>+<VBG><NN|NNS|NNP|NNPS>+}
+           {<JJ|JJR|JJS>+<VBG><NN|NNS|NNP|NNPS>+}
            {<VBN><NN|NNS|NNP|NNPS>+}
-           {<JJ|JJR|JJS>+<VBG>?<NN|NNS|NNP|NNPS>+}
            {<JJR|JJS>?<RB|RBR|RBS><NN|NNS|NNP|NNPS>+}
            {<RB|RBR|RBS><JJ|JJR|JJS>+<NN|NNS|NNP|NNPS>+<JJ|JJR|JJS>+<NN|NNS|NNP|NNPS>+}
         """
