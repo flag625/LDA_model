@@ -35,20 +35,26 @@ class PrePrecess(object):
         Seg.Segemnt(self.inputFile, segTmpFile)
         print("----"*20)
         self.df = Seg.getDF()
-        self.add_col('tech_chunk')
         print("开始技术词分块：")
-        self.techChunk()
-        self.pd2excel('techChunk_test')
+        self.chunk()
         print("----"*20)
+        print("开始功效词分块：")
+        self.chunk(0)
+        print("----" * 20)
+        self.pd2excel('chunk_test')
 
-    def techChunk(self):
+    def chunk(self, tech=1):
         num = 0
-        for doc in self.df.ix[:, 'tech']:
+        grammer = 'tech'
+        if not tech:
+            grammer = 'func'
+        self.add_col(grammer + '_chunk')
+        for doc in self.df.ix[:, grammer]:
             if doc:
                 chunk = chu.Chunking(num+1)
-                chunk.doc_chunking(conf.get('grammer', 'tech_np_grammer'), doc)
+                chunk.doc_chunking(conf.get('grammer', grammer+'_np_grammer'), doc)
                 res = chunk.getNounPhrases()
-                self.df['tech_chunk'][num] = res
+                self.df[grammer+'_chunk'][num] = res
                 del chunk
             num += 1
 
