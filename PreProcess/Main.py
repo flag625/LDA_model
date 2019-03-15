@@ -31,11 +31,44 @@ class PrePrecess(object):
 
     def main(self,segTmpFile=None):
         Seg = seg.Segement()
+        print("开始技术词和功效词分段：")
         Seg.Segemnt(self.inputFile, segTmpFile)
+        print("----"*20)
         self.df = Seg.getDF()
+        self.add_col('tech_chunk')
+        print("开始技术词分块：")
+        self.techChunk()
+        self.pd2excel('techChunk_test')
+        print("----"*20)
+
+    def techChunk(self):
+        num = 0
+        for doc in self.df.ix[:, 'tech']:
+            if doc:
+                chunk = chu.Chunking(num+1)
+                chunk.doc_chunking(conf.get('grammer', 'tech_np_grammer'), doc)
+                res = chunk.getNounPhrases()
+                self.df['tech_chunk'][num] = res
+                del chunk
+            num += 1
+
+    def add_col(self, colname):
+        '''
+        增加一个新的空数据列
+        :param new_col: 新列的名称
+        '''
+        try:
+            self.df[colname] = None
+        except Exception as e:
+            logger.info(u"失败原因：")
+            logger.info(e)
+            raise e
+
+    def pd2excel(self, filename):
+        comm.Df2excel(self.df).df2excel(filename, 'tmp')
 
 
 if __name__ == '__main__':
     proprocess = PrePrecess('test')
     proprocess.main('seg_test')
-    print(proprocess.getDF().head(5))
+    # print(proprocess.getDF().head(5))
