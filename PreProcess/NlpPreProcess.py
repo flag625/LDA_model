@@ -79,10 +79,15 @@ class NlpPreProcess(object):
                 dictWord['content'] = ' '.join(cleanDoc) #保存为Json文件
                 json.dump(dictWord, saveFile, ensure_ascii=False)
                 saveFile.write('\n')
+                print("Finished : %s" %(num+1))
                 num += 1
-            pd.DataFrame.from_dict(dict(freFile), orient='index').to_excel(freFile)
+            saveFile.close()
+            print(r"Output documents's words File")
+            pd.DataFrame.from_dict(dict(freWord), orient='index').to_excel(freFile)
+            print("Output Frequence of Word File : %s" %freFile)
             print('---'*20)
         except Exception as e:
             logger.info(u"失败原因：")
             logger.info(e)
             raise e
+
